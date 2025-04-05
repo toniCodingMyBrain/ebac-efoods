@@ -10,6 +10,34 @@ export const FooterContainer = styled.footer`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  img {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    max-height: 160px;
+    padding: 8px 0;
+
+    .footerContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .logo {
+        width: 90px;
+      }
+
+      ul {
+        width: 70%;
+        margin-top: 12px;
+      }
+    }
+  }
 `;
 
 export const FooterLinks = styled.ul`
@@ -21,8 +49,8 @@ export const FooterLinks = styled.ul`
 `;
 
 export const FooterText = styled.p`
-  width: 480px;
+  max-width: 480px;
   font-weight: 400;
-  font-size: 10px;
+  font-size: clamp(0.375rem, 4vw, 0.625rem);
   text-align: center;
 `;

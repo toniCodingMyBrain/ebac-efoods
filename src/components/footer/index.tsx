@@ -6,8 +6,8 @@ import { FooterContainer, FooterLinks, FooterText } from "./style";
 
 export const Footer = () => (
   <FooterContainer>
-    <div>
-      <img src={logo} alt="Efood" />
+    <div className="footerContainer">
+      <img src={logo} alt="Efood" className="logo" />
       <FooterLinks>
         <li>
           <a href="#">
