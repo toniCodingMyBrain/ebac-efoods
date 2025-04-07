@@ -1,17 +1,19 @@
+import { BrowserRouter } from "react-router-dom";
 import { HomeBanner } from "./components/banner";
 import { Footer } from "./components/footer";
 import { GlobalCss } from "./GlobalStyle";
+import PageRoutes from "./routes";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <GlobalCss />
       <HomeBanner />
       <div className="container">
-        <h3>Hello World</h3>
+        <PageRoutes />
       </div>
       <Footer />
-    </>
+    </BrowserRouter>
   );
 }
 

@@ -10,10 +10,10 @@ export const FooterContainer = styled.footer`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
+  /* position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
+  right: 0; */
 
   img {
     width: 100%;
