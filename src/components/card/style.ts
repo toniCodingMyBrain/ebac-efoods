@@ -1,26 +1,27 @@
 import styled from "styled-components";
 import { colors } from "../../GlobalStyle";
 
-import { FoodCardProps } from ".";
+/* import { FoodCardProps } from "."; */
 import { TagContainer } from "../tag/style";
 
-export const CardContainer = styled.div<
-  Omit<FoodCardProps, "foodName" | "tag" | "description" | "rating" | "image">
->`
-  width: ${(FoodCardProps) =>
-    FoodCardProps.type === "home" ? "472px" : "320px"};
-  border: ${(FoodCardProps) =>
-    FoodCardProps.type === "home" ? `1px solid ${colors.rose}` : "none"};
-  background-color: ${(FoodCardProps) =>
-    FoodCardProps.type === "home" ? `${colors.white}` : `${colors.rose}`};
+interface CardStyleProps {
+  type: "home" | "foodPage";
+  image?: string;
+}
+
+export const CardContainer = styled.div<CardStyleProps>`
+  width: ${(props) =>
+    props.type === "home" ? "472px" : "320px"};
+  border: ${(props) =>
+    props.type === "home" ? `1px solid ${colors.rose}` : "none"};
+  background-color: ${(props) =>
+    props.type === "home" ? `${colors.white}` : `${colors.rose}`};
 `;
 
-export const CardHeader = styled.div<
-  Omit<FoodCardProps, "foodName" | "tag" | "description" | "rating">
->`
-  ${(FoodCardProps) =>
-    FoodCardProps.type === "home"
-      ? `background-image: url(${FoodCardProps.image});
+export const CardHeader = styled.div<CardStyleProps>`
+  ${(props) =>
+    props.type === "home"
+      ? `background-image: url(${props.image});
       background-size: cover;
       height: 217px;
       gap: 8px;
@@ -33,7 +34,7 @@ export const CardHeader = styled.div<
       : /**
          * ? separação de tipos de cards
          */
-        `background-image: url(${FoodCardProps.image});
+        `background-image: url(${props.image});
       background-size: cover;
       margin: 8px;
       background-color: ${colors.rose};
@@ -44,13 +45,23 @@ export const CardBody = styled.div`
   margin: 8px 8px;
 `;
 
-export const CardTitle = styled.div`
+export const CardTitle = styled.div<CardStyleProps>`
   display: flex;
+  font-weight: bold;
+  ${(props) =>
+    props.type === "home"
+      ? `
   justify-content: space-between;
   font-size: 18px;
-  font-weight: bold;
   color: ${colors.rose};
   margin-bottom: 16px;
+  `
+      : `
+  flex-wrap: wrap;
+  font-size: 16px;
+  color: ${colors.white};
+  margin-bottom: 8px;
+      `}
 `;
 
 export const CardDescription = styled.p`

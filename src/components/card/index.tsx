@@ -37,7 +37,7 @@ export const FoodCard = ({
           ))}
         </CardHeader>
         <CardBody>
-          <CardTitle>
+          <CardTitle type={type}>
             <h3>{foodName}</h3>
             <CardRating>
               <h3>{rating}</h3>
@@ -54,16 +54,10 @@ export const FoodCard = ({
   } else {
     return (
       <CardContainer type={type}>
-        <CardHeader type={type} image={image}>
-          
-        </CardHeader>
+        <CardHeader type={type} image={image}></CardHeader>
         <CardBody>
-          <CardTitle>
+          <CardTitle type={type}>
             <h3>{foodName}</h3>
-            <CardRating>
-              <h3>{rating}</h3>
-              <img src={estrela} alt="Classificação" />
-            </CardRating>
           </CardTitle>
           <CardDescription>{description}</CardDescription>
           <Button buttonTitle="Saiba mais sobre esta incrível iguaria" to="#">
