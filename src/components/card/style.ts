@@ -7,6 +7,7 @@ import { TagContainer } from "../tag/style";
 export const CardContainer = styled.div`
   width: 472px;
   border: 1px solid ${colors.rose};
+  background-color: ${colors.white};
 `;
 
 export const CardHeader = styled.div<
@@ -23,4 +24,29 @@ export const CardHeader = styled.div<
     margin-right: 16px;
     margin-top: 16px;
   }
+`;
+
+export const CardBody = styled.div`
+  margin: 8px 8px;
+`;
+
+export const CardTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: bold;
+  color: ${colors.rose};
+  margin-bottom: 16px;
+`;
+
+export const CardDescription = styled.p`
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 16px;
+`;
+
+export const CardRating = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;

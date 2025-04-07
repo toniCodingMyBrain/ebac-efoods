@@ -1,7 +1,15 @@
 import { CardTag } from "../tag";
-import { CardContainer, CardHeader } from "./style";
+import {
+  CardTitle,
+  CardContainer,
+  CardHeader,
+  CardDescription,
+  CardBody,
+  CardRating,
+} from "./style";
 
 import estrela from "../../public/icons/estrela.png";
+import { Button } from "../button";
 
 export type FoodCardProps = {
   foodName: string;
@@ -24,16 +32,18 @@ export const FoodCard = ({
         <CardTag key={tag}>{tag}</CardTag>
       ))}
     </CardHeader>
-    <div>
-      <div>
+    <CardBody>
+      <CardTitle>
         <h3>{foodName}</h3>
-        <div>
+        <CardRating>
           <h3>{rating}</h3>
           <img src={estrela} alt="Classificação" />
-        </div>
-      </div>
-      <p>{description}</p>
-      <button>Saiba mais</button>
-    </div>
+        </CardRating>
+      </CardTitle>
+      <CardDescription>{description}</CardDescription>
+      <Button buttonTitle="Saiba mais sobre esta incrível iguaria" to="#">
+        Saiba mais
+      </Button>
+    </CardBody>
   </CardContainer>
 );
