@@ -4,26 +4,40 @@ import { colors } from "../../GlobalStyle";
 import { FoodCardProps } from ".";
 import { TagContainer } from "../tag/style";
 
-export const CardContainer = styled.div`
-  width: 472px;
-  border: 1px solid ${colors.rose};
-  background-color: ${colors.white};
+export const CardContainer = styled.div<
+  Omit<FoodCardProps, "foodName" | "tag" | "description" | "rating" | "image">
+>`
+  width: ${(FoodCardProps) =>
+    FoodCardProps.type === "home" ? "472px" : "320px"};
+  border: ${(FoodCardProps) =>
+    FoodCardProps.type === "home" ? `1px solid ${colors.rose}` : "none"};
+  background-color: ${(FoodCardProps) =>
+    FoodCardProps.type === "home" ? `${colors.white}` : `${colors.rose}`};
 `;
 
 export const CardHeader = styled.div<
   Omit<FoodCardProps, "foodName" | "tag" | "description" | "rating">
 >`
-  background-image: url(${(FoodCardProps) => FoodCardProps.image});
-  background-size: cover;
-  height: 217px;
-  gap: 8px;
-  display: flex;
-  justify-content: end;
-
-  ${TagContainer} {
-    margin-right: 16px;
-    margin-top: 16px;
-  }
+  ${(FoodCardProps) =>
+    FoodCardProps.type === "home"
+      ? `background-image: url(${FoodCardProps.image});
+      background-size: cover;
+      height: 217px;
+      gap: 8px;
+      display: flex;
+      justify-content: end;
+      ${TagContainer} {
+          margin-right: 16px;
+          margin-top: 16px;
+      }`
+      : /**
+         * ? separação de tipos de cards
+         */
+        `background-image: url(${FoodCardProps.image});
+      background-size: cover;
+      margin: 8px;
+      background-color: ${colors.rose};
+      height: 167px;`};
 `;
 
 export const CardBody = styled.div`

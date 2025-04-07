@@ -12,6 +12,7 @@ export const FoodList = ({ foods }: FoodListProps) => (
       {foods.map((food) => (
         <FoodCard
           key={food.id}
+          type={"foodPage"}
           foodName={food.foodName}
           description={food.description}
           tag={food.tag}
