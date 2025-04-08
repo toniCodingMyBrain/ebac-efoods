@@ -10,18 +10,18 @@ interface CardStyleProps {
 }
 
 export const CardContainer = styled.div<CardStyleProps>`
-  width: ${(props) =>
-    props.type === "home" ? "472px" : "320px"};
-  border: ${(props) =>
-    props.type === "home" ? `1px solid ${colors.rose}` : "none"};
-  background-color: ${(props) =>
-    props.type === "home" ? `${colors.white}` : `${colors.rose}`};
+  width: ${(CardStyleProps) =>
+    CardStyleProps.type === "home" ? "472px" : "320px"};
+  border: ${(CardStyleProps) =>
+    CardStyleProps.type === "home" ? `1px solid ${colors.rose}` : "none"};
+  background-color: ${(CardStyleProps) =>
+    CardStyleProps.type === "home" ? `${colors.white}` : `${colors.rose}`};
 `;
 
 export const CardHeader = styled.div<CardStyleProps>`
-  ${(props) =>
-    props.type === "home"
-      ? `background-image: url(${props.image});
+  ${(CardStyleProps) =>
+    CardStyleProps.type === "home"
+      ? `background-image: url(${CardStyleProps.image});
       background-size: cover;
       height: 217px;
       gap: 8px;
@@ -34,22 +34,29 @@ export const CardHeader = styled.div<CardStyleProps>`
       : /**
          * ? separação de tipos de cards
          */
-        `background-image: url(${props.image});
+        `background-image: url(${CardStyleProps.image});
       background-size: cover;
       margin: 8px;
       background-color: ${colors.rose};
       height: 167px;`};
 `;
 
-export const CardBody = styled.div`
+export const CardBody = styled.div<CardStyleProps>`
   margin: 8px 8px;
+  ${(CardStyleProps) =>
+    CardStyleProps.type === "foodPage"
+      ? `
+    display: flex;
+    flex-direction: column;
+  `
+      : ``}
 `;
 
 export const CardTitle = styled.div<CardStyleProps>`
   display: flex;
   font-weight: bold;
-  ${(props) =>
-    props.type === "home"
+  ${(CardStyleProps) =>
+    CardStyleProps.type === "home"
       ? `
   justify-content: space-between;
   font-size: 18px;
@@ -64,10 +71,21 @@ export const CardTitle = styled.div<CardStyleProps>`
       `}
 `;
 
-export const CardDescription = styled.p`
+export const CardDescription = styled.p<CardStyleProps>`
   font-size: 14px;
+  ${(CardStyleProps) =>
+    CardStyleProps.type === "home"
+      ? `
+  color: ${colors.rose};
   font-weight: 400;
   margin-bottom: 16px;
+  `
+      : `
+  color: ${colors.white};
+  font-weight: 400;
+  margin-bottom: 16px;
+  line-height: 22px;
+      `}
 `;
 
 export const CardRating = styled.div`

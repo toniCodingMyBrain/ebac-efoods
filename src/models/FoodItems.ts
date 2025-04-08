@@ -28,7 +28,7 @@ export const FoodItems: Food[] = [
     foodName: "Pizza Margueritta",
     tag: ["Mais famosa", "Italiana"],
     description:
-      "A Pizza Margueritta leva a autêntica cozinha italiana até você! Desfrute de massas caseiras e pizzas deliciosas, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!",
+      "A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!",
     image: pizza,
     rating: "4.6",
   },

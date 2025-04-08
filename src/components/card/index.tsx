@@ -38,7 +38,7 @@ export const FoodCard = ({
             <CardTag key={tag}>{tag}</CardTag>
           ))}
         </CardHeader>
-        <CardBody>
+        <CardBody type={type}>
           <CardTitle type={type}>
             <h3>{foodName}</h3>
             <CardRating>
@@ -46,8 +46,12 @@ export const FoodCard = ({
               <img src={estrela} alt="Classificação" />
             </CardRating>
           </CardTitle>
-          <CardDescription>{description}</CardDescription>
-          <Button to={to} buttonTitle="Saiba mais sobre esta incrível iguaria">
+          <CardDescription type={type}>{description}</CardDescription>
+          <Button
+            typeButton="primary"
+            to={to}
+            buttonTitle="Saiba mais sobre esta incrível iguaria"
+          >
             Saiba mais
           </Button>
         </CardBody>
@@ -57,13 +61,17 @@ export const FoodCard = ({
     return (
       <CardContainer type={type}>
         <CardHeader type={type} image={image}></CardHeader>
-        <CardBody>
+        <CardBody type={type}>
           <CardTitle type={type}>
             <h3>{foodName}</h3>
           </CardTitle>
-          <CardDescription>{description}</CardDescription>
-          <Button buttonTitle="Adicionar ao carrinho" to="/">
-            {to}
+          <CardDescription type={type}>{description}</CardDescription>
+          <Button
+            typeButton="secondary"
+            buttonTitle="Adicionar ao carrinho"
+            to="/"
+          >
+            Adicionar ao carrinho
           </Button>
         </CardBody>
       </CardContainer>

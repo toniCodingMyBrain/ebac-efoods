@@ -19,7 +19,7 @@ export const FoodList = ({ type, foods }: FoodListProps) => (
           tag={food.tag}
           image={food.image}
           rating={food.rating}
-          to={"#"}
+          to={"/pizza"}
         />
       ))}
     </List>
