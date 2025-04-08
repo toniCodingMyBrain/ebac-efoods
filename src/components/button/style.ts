@@ -21,4 +21,9 @@ export const CardButton = styled(Link)<ButtonProps>`
       `}
   font-size: 14px;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    padding: 2px 2px;
+    font-size: 12px;
+  }
 `;

@@ -9,13 +9,20 @@ export const List = styled.ul<FoodListStyleProps>`
   ${(FoodListStyleProps) =>
     FoodListStyleProps.type === "home"
       ? `
-    grid-template-columns: 1fr 1fr;
-    column-gap: 80px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    column-gap: 5rem;
     row-gap: 48px;
     `
       : `
-    grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 32px;
-  row-gap: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    column-gap: 32px;
+    row-gap: 32px;
   `}
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    justify-items: center;
+    column-gap: 0.875rem;
+    row-gap: 0.875rem;
+  }
 `;

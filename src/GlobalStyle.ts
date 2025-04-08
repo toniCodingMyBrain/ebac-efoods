@@ -23,10 +23,20 @@ export const GlobalCss = createGlobalStyle`
         color: ${colors.rose};
         max-width: 1366px;
         width: 100%;
+
+        @media (max-width: 768px){
+            width: 100%;
+        }
     }
 
     .container {
         max-width: 1024px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 768px){
+        max-width: 768px;
         width: 100%;
         margin: 0 auto;
     }
