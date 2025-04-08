@@ -18,6 +18,7 @@ export type FoodCardProps = {
   description: string;
   image?: string;
   rating: string;
+  to: string;
 };
 
 export const FoodCard = ({
@@ -27,6 +28,7 @@ export const FoodCard = ({
   image,
   rating,
   type,
+  to,
 }: FoodCardProps) => {
   if (type === "home") {
     return (
@@ -45,7 +47,7 @@ export const FoodCard = ({
             </CardRating>
           </CardTitle>
           <CardDescription>{description}</CardDescription>
-          <Button buttonTitle="Saiba mais sobre esta incrível iguaria" to="#">
+          <Button to={to} buttonTitle="Saiba mais sobre esta incrível iguaria">
             Saiba mais
           </Button>
         </CardBody>
@@ -60,8 +62,8 @@ export const FoodCard = ({
             <h3>{foodName}</h3>
           </CardTitle>
           <CardDescription>{description}</CardDescription>
-          <Button buttonTitle="Saiba mais sobre esta incrível iguaria" to="#">
-            Saiba mais
+          <Button buttonTitle="Adicionar ao carrinho" to="/">
+            {to}
           </Button>
         </CardBody>
       </CardContainer>

@@ -4,6 +4,6 @@ import { HomeContainer } from "./style";
 
 export const Home = () => (
   <HomeContainer>
-    <FoodList foods={FoodItems} />
+    <FoodList type={"home"} foods={FoodItems} />
   </HomeContainer>
 );

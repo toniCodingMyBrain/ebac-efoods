@@ -3,6 +3,7 @@ import { Food } from "./Food";
 import sushi from "../public/assets/sushi.png";
 import pizza from "../public/assets/pizza.png";
 import spagetti from "../public/assets/spagetti.png";
+
 export const FoodItems: Food[] = [
   {
     id: 1,

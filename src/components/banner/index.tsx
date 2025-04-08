@@ -3,7 +3,9 @@ import { BannerContainer, BannerText } from "./style";
 
 export const HomeBanner = () => (
   <BannerContainer>
-    <img src={logo} alt="Efood" />
+    <a href="/">
+      <img src={logo} alt="Efood" />
+    </a>
     <BannerText>
       Viva experiências gastronômicas no conforto da sua casa
     </BannerText>
