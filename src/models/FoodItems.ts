@@ -26,7 +26,7 @@ export const FoodItems: Food[] = [
   {
     id: 3,
     foodName: "Pizza Margueritta",
-    tag: ["Mais famosa", "Italiana"],
+    tag: ["Italiana", "Mais famosa"],
     description:
       "A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!",
     image: pizza,

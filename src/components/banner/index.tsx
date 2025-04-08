@@ -1,11 +1,20 @@
 import logo from "../../public/assets/logo.png";
-import { BannerContainer, BannerText } from "./style";
+import spagettiBanner from "../../public/assets/spagetti_banner.png";
+
+import {
+  BannerContainer,
+  BannerImage,
+  BannerText,
+  SubBannerContainer,
+} from "./style";
 
 export type BannerProps = {
   typeBanner: "home" | "foodPage";
+  foodTags?: string;
+  foodName?: string;
 };
 
-export const HomeBanner = ({ typeBanner }: BannerProps) => {
+export const HomeBanner = ({ typeBanner, foodTags, foodName }: BannerProps) => {
   if (typeBanner === "home") {
     return (
       <BannerContainer typeBanner={typeBanner}>
@@ -19,15 +28,24 @@ export const HomeBanner = ({ typeBanner }: BannerProps) => {
     );
   } else if (typeBanner === "foodPage") {
     return (
-      <BannerContainer typeBanner={typeBanner}>
-        <BannerText typeBanner={typeBanner}>Restaurante</BannerText>
-        <a href="/">
-          <img src={logo} alt="Efood" />
-        </a>
-        <BannerText typeBanner={typeBanner}>
-          0 produto(s) no carrinho
-        </BannerText>
-      </BannerContainer>
+      <>
+        <BannerContainer typeBanner={typeBanner}>
+          <BannerText typeBanner={typeBanner}>Restaurante</BannerText>
+          <a href="/">
+            <img src={logo} alt="Efood" />
+          </a>
+          <BannerText typeBanner={typeBanner}>
+            0 produto(s) no carrinho
+          </BannerText>
+        </BannerContainer>
+        <SubBannerContainer>
+          <BannerImage src={spagettiBanner} alt="" />
+          <div className="content">
+            <h3 className="tag">{foodTags}</h3>
+            <h3 className="foodName">{foodName}</h3>
+          </div>
+        </SubBannerContainer>
+      </>
     );
   }
 };
