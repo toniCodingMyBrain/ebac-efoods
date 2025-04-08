@@ -56,7 +56,7 @@ export const CardHeader = styled.div<CardStyleProps>`
 
 export const CardBody = styled.div<CardStyleProps>`
   margin-bottom: 8px;
-  margin-left: 8px;
+  margin-inline: 8px;
   ${(CardStyleProps) =>
     CardStyleProps.type === "foodPage"
       ? `
@@ -67,7 +67,7 @@ export const CardBody = styled.div<CardStyleProps>`
 
   @media (max-width: 768px) {
     margin-bottom: 4px;
-    margin-left: 4px;
+    margin-inline: 4px;
   }
 `;
 
