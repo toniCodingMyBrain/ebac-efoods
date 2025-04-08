@@ -89,6 +89,7 @@ export const CardDescription = styled.p<CardStyleProps>`
 `;
 
 export const CardRating = styled.div`
+  height: 21px;
   display: flex;
   align-items: center;
   gap: 8px;

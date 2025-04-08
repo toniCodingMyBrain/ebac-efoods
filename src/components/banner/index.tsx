@@ -1,21 +1,33 @@
 import logo from "../../public/assets/logo.png";
 import { BannerContainer, BannerText } from "./style";
 
-export const HomeBanner = () => (
-  <BannerContainer>
-    <a href="/">
-      <img src={logo} alt="Efood" />
-    </a>
-    <BannerText>
-      Viva experiências gastronômicas no conforto da sua casa
-    </BannerText>
-  </BannerContainer>
-);
+export type BannerProps = {
+  typeBanner: "home" | "foodPage";
+};
 
-export const RegularBanner = () => (
-  <div className="container">
-    <h3>Restaurantes</h3>
-    <img src={logo} alt="Efood" />
-    <h3>0 produto(s) no carrinho</h3>
-  </div>
-);
+export const HomeBanner = ({ typeBanner }: BannerProps) => {
+  if (typeBanner === "home") {
+    return (
+      <BannerContainer typeBanner={typeBanner}>
+        <a href="/">
+          <img src={logo} alt="Efood" />
+        </a>
+        <BannerText typeBanner={typeBanner}>
+          Viva experiências gastronômicas no conforto da sua casa
+        </BannerText>
+      </BannerContainer>
+    );
+  } else if (typeBanner === "foodPage") {
+    return (
+      <BannerContainer typeBanner={typeBanner}>
+        <BannerText typeBanner={typeBanner}>Restaurante</BannerText>
+        <a href="/">
+          <img src={logo} alt="Efood" />
+        </a>
+        <BannerText typeBanner={typeBanner}>
+          0 produto(s) no carrinho
+        </BannerText>
+      </BannerContainer>
+    );
+  }
+};
