@@ -21,7 +21,6 @@ export const GlobalCss = createGlobalStyle`
     body {
         background-color: ${colors.lightBeige};
         color: ${colors.rose};
-        max-width: 1366px;
         width: 100%;
 
         @media (max-width: 768px){

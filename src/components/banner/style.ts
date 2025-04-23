@@ -20,7 +20,7 @@ export const BannerContainer = styled.div<BannerProps>`
       : `
   background-image: url(${banner});
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   padding: 82px 0;
   align-items: center;
   text-align: center;
