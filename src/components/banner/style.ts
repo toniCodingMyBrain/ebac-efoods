@@ -6,36 +6,54 @@ import { BannerProps } from ".";
 import { colors } from "../../GlobalStyle";
 
 export const BannerContainer = styled.div<BannerProps>`
+  background-image: url(${banner});
+
   ${(IBannerProps) =>
     IBannerProps.typeBanner === "home"
       ? `
-  height: 360px;
-  background-image: url(${banner});
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px 0;
-  `
-      : `
-  background-image: url(${banner});
-  padding: 82px 0;
-
-  .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    text-align: center;
-    }
+    padding: 40px 0;
+    `
+      : `
+    padding: 136px 0;
+
+      .content {
+      max-width: 1024px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row; 
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      }
   `}
 
-  @media (max-width: 768px) {
-    height: 160px;
-    padding: 8px 0;
+  @media (max-width: 1056px) {
+    .content {
+      width: 90%;
+    }
+  }
 
-    img {
-      width: 90px;
+  @media (max-width: 768px) {
+    padding: 48px 16px;
+
+    .content {
+      width: 90%;
+      flex-direction: column;
+
+      a > img {
+        width: 90px;
+        padding: 8px 12px;
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    .content {
+      width: 60%;
     }
   }
 `;
@@ -93,7 +111,12 @@ export const SubBannerContainer = styled.div`
       font-weight: 900;
     }
 
+    @media (max-width: 1056px) {
+      width: 90%;
+    }
+
     @media (max-width: 768px) {
+      width: 90%;
       font-size: 1.2rem;
     }
   }
