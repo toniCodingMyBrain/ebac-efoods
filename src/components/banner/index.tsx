@@ -30,17 +30,19 @@ export const HomeBanner = ({ typeBanner, foodTags, foodName }: BannerProps) => {
     return (
       <>
         <BannerContainer typeBanner={typeBanner}>
-          <BannerText typeBanner={typeBanner}>Restaurante</BannerText>
-          <a href="/">
-            <img src={logo} alt="Efood" />
-          </a>
-          <BannerText typeBanner={typeBanner}>
-            0 produto(s) no carrinho
-          </BannerText>
+          <div className="container">
+            <BannerText typeBanner={typeBanner}>Restaurante</BannerText>
+            <a href="/">
+              <img src={logo} alt="Efood" />
+            </a>
+            <BannerText typeBanner={typeBanner}>
+              0 produto(s) no carrinho
+            </BannerText>
+          </div>
         </BannerContainer>
         <SubBannerContainer>
           <BannerImage src={spagettiBanner} alt="" />
-          <div className="content">
+          <div className="content container">
             <h3 className="tag">{foodTags}</h3>
             <h3 className="foodName">{foodName}</h3>
           </div>

@@ -19,11 +19,15 @@ export const BannerContainer = styled.div<BannerProps>`
   `
       : `
   background-image: url(${banner});
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
   padding: 82px 0;
-  align-items: center;
-  text-align: center;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    }
   `}
 
   @media (max-width: 768px) {
@@ -46,16 +50,12 @@ export const BannerText = styled.p<BannerProps>`
     IBannerProps.typeBanner === "home"
       ? `
       font-size: clamp(1rem, 4vw, 2.25rem);
-      padding: 0 20px;
-      margin: 0 auto;
       `
       : `
       font-size: clamp(0.450rem, 4vw, 1.125rem);
     `}
   letter-spacing: 0%;
-  max-width: 700px;
   font-weight: 900;
-  text-align: center;
 `;
 
 export const BannerImage = styled.img`
@@ -79,7 +79,6 @@ export const SubBannerContainer = styled.div`
     position: relative;
     z-index: 2;
     color: ${colors.white};
-    padding-left: 12%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
