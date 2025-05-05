@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const colors = {
   beige: "#FFEBD9",
   lightBeige: "#FFF8F2",
-  white: "#f1f1f1",
+  white: "#FFFFFF",
   rose: "#E66767",
 };
 
