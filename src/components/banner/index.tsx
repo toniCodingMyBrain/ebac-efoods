@@ -32,7 +32,7 @@ export const HomeBanner = ({ typeBanner, foodTags, foodName }: BannerProps) => {
         <BannerContainer typeBanner={typeBanner}>
           <div className="content">
             <BannerText typeBanner={typeBanner}>Restaurante</BannerText>
-            <a href="/">
+            <a href="/" className="logo">
               <img src={logo} alt="Efood" />
             </a>
             <BannerText typeBanner={typeBanner}>

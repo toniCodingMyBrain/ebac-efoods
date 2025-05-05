@@ -7,6 +7,7 @@ import { colors } from "../../GlobalStyle";
 
 export const BannerContainer = styled.div<BannerProps>`
   background-image: url(${banner});
+  position: relative;
 
   ${(IBannerProps) =>
     IBannerProps.typeBanner === "home"
@@ -20,15 +21,21 @@ export const BannerContainer = styled.div<BannerProps>`
       : `
     padding: 136px 0;
 
-      .content {
-      max-width: 1024px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: row; 
-      justify-content: space-between;
-      align-items: center;
-      text-align: center;
+    .content {
+    max-width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       }
+    }
   `}
 
   @media (max-width: 1056px) {
