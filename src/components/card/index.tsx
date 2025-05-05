@@ -47,13 +47,15 @@ export const FoodCard = ({
             </CardRating>
           </CardTitle>
           <CardDescription type={type}>{description}</CardDescription>
-          <Button
-            typeButton="primary"
-            to={to}
-            buttonTitle="Saiba mais sobre esta incrível iguaria"
-          >
-            Saiba mais
-          </Button>
+          <div className="btn-home-card">
+            <Button
+              typeButton="primary"
+              to={to}
+              buttonTitle="Saiba mais sobre esta incrível iguaria"
+            >
+              Saiba mais
+            </Button>
+          </div>
         </CardBody>
       </CardContainer>
     );
@@ -66,6 +68,7 @@ export const FoodCard = ({
             <h3>{foodName}</h3>
           </CardTitle>
           <CardDescription type={type}>{description}</CardDescription>
+
           <Button
             typeButton="secondary"
             buttonTitle="Adicionar ao carrinho"

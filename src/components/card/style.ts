@@ -3,6 +3,7 @@ import { colors } from "../../GlobalStyle";
 
 /* import { FoodCardProps } from "."; */
 import { TagContainer } from "../tag/style";
+import { CardButton } from "../button/style";
 
 interface CardStyleProps {
   type: "home" | "foodPage";
@@ -31,6 +32,7 @@ export const CardHeader = styled.div<CardStyleProps>`
       gap: 8px;
       display: flex;
       justify-content: end;
+
       ${TagContainer} {
           margin-right: 16px;
           margin-top: 16px;
@@ -54,18 +56,38 @@ export const CardHeader = styled.div<CardStyleProps>`
   }
 `;
 
+// ToDo: ajustar o botão preso ao fundo sem precisar definir height para descrição
+
 export const CardBody = styled.div<CardStyleProps>`
   margin-bottom: 8px;
   margin-inline: 8px;
+  height: 181px;
+  position: relative;
+
+  .btn-home-card {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
   ${(CardStyleProps) =>
     CardStyleProps.type === "foodPage"
       ? `
+    height: 163px;
     display: flex;
     flex-direction: column;
+
+    ${CardButton} {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
   `
       : ``}
 
-  @media (max-width: 768px) {
+  @media
+    (max-width: 768px) {
     margin-bottom: 4px;
     margin-inline: 4px;
   }
@@ -74,6 +96,8 @@ export const CardBody = styled.div<CardStyleProps>`
 export const CardTitle = styled.div<CardStyleProps>`
   display: flex;
   font-weight: bold;
+  margin-top: 8px;
+
   ${(CardStyleProps) =>
     CardStyleProps.type === "home"
       ? `
@@ -97,13 +121,13 @@ export const CardTitle = styled.div<CardStyleProps>`
 
 export const CardDescription = styled.p<CardStyleProps>`
   font-size: 14px;
-  height: 88px;
   ${(CardStyleProps) =>
     CardStyleProps.type === "home"
       ? `
   color: ${colors.rose};
   font-weight: 400;
   margin-bottom: 16px;
+  line-height: 22px;
   `
       : `
   color: ${colors.white};
