@@ -19,16 +19,16 @@ export const BannerContainer = styled.div<BannerProps>`
     padding: 40px 0;
     `
       : `
-    padding: 136px 0;
+    padding: 66px 0;
 
     .content {
-    max-width: 1024px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row; 
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
+      max-width: 1024px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row; 
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
 
     .logo {
       position: absolute;
@@ -66,15 +66,13 @@ export const BannerContainer = styled.div<BannerProps>`
 `;
 
 export const BannerText = styled.p<BannerProps>`
-  /**
-  * * Não acompanhava o tamanho do screen 
-  * !-width: 50%;
-  * !-font-size: 2.25rem; 
-  */
   ${(IBannerProps) =>
     IBannerProps.typeBanner === "home"
       ? `
+      width: 690px;
       font-size: clamp(1rem, 4vw, 2.25rem);
+      margin-top: 136px;
+      text-align: center;
       `
       : `
       font-size: clamp(0.450rem, 4vw, 1.125rem);
