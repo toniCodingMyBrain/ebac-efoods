@@ -29,8 +29,12 @@ export const CloseButton = styled.button`
   background-color: transparent;
   border: none;
   color: ${colors.white};
-  font-size: 16px;
   cursor: pointer;
+
+  .close-button {
+    width: 16px;
+    height: 16px;
+  }
 
   &:hover {
     color: ${colors.beige};

@@ -96,26 +96,36 @@ export const CardBody = styled.div<CardStyleProps>`
 export const CardTitle = styled.div<CardStyleProps>`
   display: flex;
   font-weight: bold;
+
   color: ${(CardStyleProps) => {
     if (CardStyleProps.type === "home") return colors.rose;
     if (CardStyleProps.type === "foodPage" || CardStyleProps.type === "modal")
       return colors.white;
   }};
 
-  ${(CardStyleProps) =>
-    CardStyleProps.type === "home"
-      ? `
-      margin-top: 8px;
-  justify-content: space-between;
-  font-size: 18px;
-  margin-bottom: 16px;
-  `
-      : `
-      margin-top: 8px;
-  flex-wrap: wrap;
-  font-size: 16px;
-  margin-bottom: 8px;
-      `}
+  margin-top: ${(CardStyleProps) => {
+    if (CardStyleProps.type === "home" || CardStyleProps.type === "foodPage")
+      return "8px";
+    if (CardStyleProps.type === "modal") return "0";
+  }};
+
+  margin-bottom: ${(CardStyleProps) => {
+    if (CardStyleProps.type === "home" || CardStyleProps.type === "modal")
+      return "16px";
+    if (CardStyleProps.type === "foodPage") return "8px";
+  }};
+
+  font-size: ${(CardStyleProps) => {
+    if (CardStyleProps.type === "home" || CardStyleProps.type === "modal")
+      return "18px";
+    if (CardStyleProps.type === "foodPage") return "16px";
+  }};
+
+  ${(CardStyleProps) => {
+    if (CardStyleProps.type === "home")
+      return "justify-content: space-between;";
+    if (CardStyleProps.type === "foodPage") return "flex-wrap: wrap;";
+  }};
 
   @media (max-width: 768px) {
     font-size: 12px;
@@ -124,6 +134,13 @@ export const CardTitle = styled.div<CardStyleProps>`
 `;
 
 export const CardDescription = styled.p<CardStyleProps>`
+  margin-bottom: 16px;
+  line-height: 22px;
+  font-weight: 400;
+
+  ${(CardStyleProps) => {
+    if (CardStyleProps.type !== "modal")
+      return `
   font-size: 14px;
   white-space: normal;
   /* Configura o contêiner para exibir como um box com limite de linhas */
@@ -133,21 +150,18 @@ export const CardDescription = styled.p<CardStyleProps>`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  `;
+  }};
 
   ${(CardStyleProps) =>
     CardStyleProps.type === "home"
       ? `
   color: ${colors.rose};
-  font-weight: 400;
-  margin-bottom: 16px;
-  line-height: 22px;
   `
       : `
   color: ${colors.white};
-  font-weight: 400;
-  margin-bottom: 16px;
-  line-height: 22px;
       `}
+
   @media (max-width: 768px) {
     height: 70%;
     font-size: 8px;

@@ -16,7 +16,7 @@ export const CardButton = styled(Link)<ButtonProps>`
       : `
       background-color: ${colors.beige};
       color: ${colors.rose};
-      padding: 4px 0;
+      padding: 4px 6px;
       text-align: center;
       `}
   font-size: 14px;

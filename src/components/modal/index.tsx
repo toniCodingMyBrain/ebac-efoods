@@ -2,6 +2,7 @@ import useRestaurantsContext from "../../api/context/use-restaurants-context";
 import { Button } from "../button";
 import { CardDescription, CardTitle } from "../card/style";
 import { CloseButton, ModalContainer, ModalCard, ModalLayout } from "./style";
+import close from "../../public/icons/close.png";
 
 type ModalProps = {
   isOpen: boolean;
@@ -19,6 +20,11 @@ export default function Modal({ isOpen }: ModalProps) {
     }
   };
 
+  const formatedPrice = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(Number(selectedRestaurantFood.preco));
+
   return (
     <>
       <ModalContainer>
@@ -26,11 +32,14 @@ export default function Modal({ isOpen }: ModalProps) {
           <div className="container">
             <ModalCard>
               <CloseButton className="close-button" onClick={closeModal}>
-                X
+                <img className="close-button" src={close} alt="fechar modal" />
               </CloseButton>
               <ModalLayout>
                 <div className="img-container">
-                  <img src={selectedRestaurantFood.foto} alt="" />
+                  <img
+                    src={selectedRestaurantFood.foto}
+                    alt={selectedRestaurantFood.nome}
+                  />
                 </div>
                 <div className="content">
                   <CardTitle type="modal">
@@ -40,13 +49,13 @@ export default function Modal({ isOpen }: ModalProps) {
                     {selectedRestaurantFood.descricao}
                   </CardDescription>
                   <CardDescription type="modal">
-                    {selectedRestaurantFood.porcao}
+                    {`Serve: ${selectedRestaurantFood.porcao}.`}
                   </CardDescription>
                   <Button
                     typeButton="secondary"
                     buttonTitle="Adicionar ao carrinho"
                   >
-                    Adicionar ao carrinho
+                    {`Adicionar ao carrinho - ${formatedPrice}`}
                   </Button>
                 </div>
               </ModalLayout>
