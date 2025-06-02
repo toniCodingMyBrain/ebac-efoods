@@ -1,27 +1,35 @@
+import useRestaurantsContext from "../../api/context/use-restaurants-context";
 import { FoodCard } from "../card";
-import { Food } from "./../../models/Food";
 import { List } from "./style";
 
 export type FoodListProps = {
   type: "home" | "foodPage";
-  foods: Food[];
 };
 
-export const FoodList = ({ type, foods }: FoodListProps) => (
-  <div>
-    <List type={type}>
-      {foods.map((food) => (
-        <FoodCard
-          key={food.id}
-          type={type}
-          foodName={food.foodName}
-          description={food.description}
-          tag={food.tag}
-          image={food.image}
-          rating={food.rating}
-          to={"/pizza"}
-        />
-      ))}
-    </List>
-  </div>
-);
+export const FoodList = ({ type }: FoodListProps) => {
+  const { restaurants } = useRestaurantsContext();
+  
+  return (
+    <div>
+      <List type={type}>
+        {restaurants.map((restaurants) => (
+          <FoodCard
+            key={restaurants.id}
+            type={type}
+            restaurantName={restaurants.titulo}
+            description={restaurants.descricao}
+            tag={
+              restaurants.destacado
+                ? ["Destaque", restaurants.tipo]
+                : [restaurants.tipo]
+            }
+            destacado={restaurants.destacado}
+            image={restaurants.capa}
+            rating={restaurants.avaliacao}
+            to={"/pizza"}
+          />
+        ))}
+      </List>
+    </div>
+  );
+};

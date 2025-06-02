@@ -13,7 +13,8 @@ import { Button } from "../button";
 
 export type FoodCardProps = {
   type: "home" | "foodPage";
-  foodName: string;
+  restaurantName: string;
+  destacado: boolean;
   tag: string[];
   description: string;
   image?: string;
@@ -22,7 +23,7 @@ export type FoodCardProps = {
 };
 
 export const FoodCard = ({
-  foodName,
+  restaurantName,
   tag,
   description,
   image,
@@ -40,7 +41,7 @@ export const FoodCard = ({
         </CardHeader>
         <CardBody type={type}>
           <CardTitle type={type}>
-            <h3>{foodName}</h3>
+            <h3>{restaurantName}</h3>
             <CardRating>
               <h3>{rating}</h3>
               <img src={estrela} alt="Classificação" />
@@ -65,10 +66,9 @@ export const FoodCard = ({
         <CardHeader type={type} image={image}></CardHeader>
         <CardBody type={type}>
           <CardTitle type={type}>
-            <h3>{foodName}</h3>
+            <h3>{restaurantName}</h3>
           </CardTitle>
           <CardDescription type={type}>{description}</CardDescription>
-
           <Button
             typeButton="secondary"
             buttonTitle="Adicionar ao carrinho"
