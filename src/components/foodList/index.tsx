@@ -8,7 +8,7 @@ export type FoodListProps = {
 
 export const FoodList = ({ type }: FoodListProps) => {
   const { restaurants } = useRestaurantsContext();
-  
+
   return (
     <div>
       <List type={type}>

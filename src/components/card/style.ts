@@ -121,6 +121,16 @@ export const CardTitle = styled.div<CardStyleProps>`
 
 export const CardDescription = styled.p<CardStyleProps>`
   font-size: 14px;
+  width: 304px;
+  white-space: normal;
+  /* Configura o contêiner para exibir como um box com limite de linhas */
+  display: -webkit-box;
+  /* Limita o texto a 4 linhas */
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   ${(CardStyleProps) =>
     CardStyleProps.type === "home"
       ? `
