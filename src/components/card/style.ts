@@ -6,7 +6,7 @@ import { TagContainer } from "../tag/style";
 import { CardButton } from "../button/style";
 
 interface CardStyleProps {
-  type: "home" | "foodPage";
+  type: "home" | "foodPage" | "modal";
   image?: string;
 }
 
@@ -96,20 +96,24 @@ export const CardBody = styled.div<CardStyleProps>`
 export const CardTitle = styled.div<CardStyleProps>`
   display: flex;
   font-weight: bold;
-  margin-top: 8px;
+  color: ${(CardStyleProps) => {
+    if (CardStyleProps.type === "home") return colors.rose;
+    if (CardStyleProps.type === "foodPage" || CardStyleProps.type === "modal")
+      return colors.white;
+  }};
 
   ${(CardStyleProps) =>
     CardStyleProps.type === "home"
       ? `
+      margin-top: 8px;
   justify-content: space-between;
   font-size: 18px;
-  color: ${colors.rose};
   margin-bottom: 16px;
   `
       : `
+      margin-top: 8px;
   flex-wrap: wrap;
   font-size: 16px;
-  color: ${colors.white};
   margin-bottom: 8px;
       `}
 
@@ -121,7 +125,6 @@ export const CardTitle = styled.div<CardStyleProps>`
 
 export const CardDescription = styled.p<CardStyleProps>`
   font-size: 14px;
-  width: 304px;
   white-space: normal;
   /* Configura o contêiner para exibir como um box com limite de linhas */
   display: -webkit-box;

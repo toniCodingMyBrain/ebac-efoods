@@ -12,8 +12,9 @@ import estrela from "../../public/icons/estrela.png";
 import { Button } from "../button";
 
 export type FoodCardProps = {
-  type: "home" | "foodPage";
-  restaurantName: string;
+  type: "home";
+  foodId: number;
+  foodName: string;
   destacado: boolean;
   tag: string[];
   description: string;
@@ -22,8 +23,8 @@ export type FoodCardProps = {
   to: string;
 };
 
-export const FoodCard = ({
-  restaurantName,
+export const RestaurantCard = ({
+  foodName,
   tag,
   description,
   image,
@@ -31,53 +32,32 @@ export const FoodCard = ({
   type,
   to,
 }: FoodCardProps) => {
-  if (type === "home") {
-    return (
-      <CardContainer type={type}>
-        <CardHeader image={image} type={type}>
-          {tag.map((tag) => (
-            <CardTag key={tag}>{tag}</CardTag>
-          ))}
-        </CardHeader>
-        <CardBody type={type}>
-          <CardTitle type={type}>
-            <h3>{restaurantName}</h3>
-            <CardRating>
-              <h3>{rating}</h3>
-              <img src={estrela} alt="Classificação" />
-            </CardRating>
-          </CardTitle>
-          <CardDescription type={type}>{description}</CardDescription>
-          <div className="btn-home-card">
-            <Button
-              typeButton="primary"
-              to={to}
-              buttonTitle="Saiba mais sobre esta incrível iguaria"
-            >
-              Saiba mais
-            </Button>
-          </div>
-        </CardBody>
-      </CardContainer>
-    );
-  } else {
-    return (
-      <CardContainer type={type}>
-        <CardHeader type={type} image={image}></CardHeader>
-        <CardBody type={type}>
-          <CardTitle type={type}>
-            <h3>{restaurantName}</h3>
-          </CardTitle>
-          <CardDescription type={type}>{description}</CardDescription>
+  return (
+    <CardContainer type={type}>
+      <CardHeader image={image} type={type}>
+        {tag.map((tag) => (
+          <CardTag key={tag}>{tag}</CardTag>
+        ))}
+      </CardHeader>
+      <CardBody type={type}>
+        <CardTitle type={type}>
+          <h3>{foodName}</h3>
+          <CardRating>
+            <h3>{rating}</h3>
+            <img src={estrela} alt="Classificação" />
+          </CardRating>
+        </CardTitle>
+        <CardDescription type={type}>{description}</CardDescription>
+        <div className="btn-home-card">
           <Button
-            typeButton="secondary"
-            buttonTitle="Adicionar ao carrinho"
-            to="/"
+            typeButton="primary"
+            to={to}
+            buttonTitle="Saiba mais sobre esta incrível iguaria"
           >
-            Adicionar ao carrinho
+            Saiba mais
           </Button>
-        </CardBody>
-      </CardContainer>
-    );
-  }
+        </div>
+      </CardBody>
+    </CardContainer>
+  );
 };

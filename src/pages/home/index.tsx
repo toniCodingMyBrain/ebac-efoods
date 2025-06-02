@@ -1,5 +1,5 @@
 import { HomeBanner } from "../../components/banner";
-import { FoodList } from "../../components/foodList";
+import { RestaurantList } from "../../components/restaurantList";
 import { HomeContainer } from "./style";
 
 export const Home = () => (
@@ -7,7 +7,7 @@ export const Home = () => (
     <HomeBanner typeBanner="home" />
     <HomeContainer>
       <div className="container">
-        <FoodList type={"home"} />
+        <RestaurantList type={"home"} />
       </div>
     </HomeContainer>
   </>

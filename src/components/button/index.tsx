@@ -13,10 +13,18 @@ export const Button = ({
   buttonTitle,
   to,
   children,
-}: ButtonProps) => (
-  <>
-    <CardButton typeButton={typeButton} title={buttonTitle} to={to as string}>
-      {children}
-    </CardButton>
-  </>
-);
+  onClick,
+}: ButtonProps) => {
+  return (
+    <>
+      <CardButton
+        typeButton={typeButton}
+        title={buttonTitle}
+        to={to as string}
+        onClick={onClick}
+      >
+        {children}
+      </CardButton>
+    </>
+  );
+};

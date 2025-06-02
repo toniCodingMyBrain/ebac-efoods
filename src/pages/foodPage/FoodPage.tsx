@@ -1,27 +1,30 @@
 import { HomeContainer } from "../home/style";
-import { FoodItems } from "../../models/FoodItems";
-import { FoodList } from "../../components/foodList";
 import { HomeBanner } from "../../components/banner";
+import { Restaurant } from "../../api/get-restaurants";
+import FoodList from "../../components/foodCard";
+import useRestaurantsContext from "../../api/context/use-restaurants-context";
 
 type FoodPageProps = {
-  foodItemId: number;
+  restaurant: Restaurant;
 };
 
-export const FoodPage = ({ foodItemId }: FoodPageProps) => {
-  const foodList = FoodItems.filter((food) => food.id === foodItemId)[0];
-  const newFoodList = Array(6).fill(foodList);
+export const FoodPage = ({ restaurant }: FoodPageProps) => {
+  const { getCardapioById } = useRestaurantsContext();
+  const restaurantCardapio = getCardapioById(restaurant.id);
 
   return (
     <>
       <HomeBanner
         typeBanner={"foodPage"}
-        foodTags={foodList.tag[0]}
-        foodName={foodList.foodName}
+        restaurantTags={
+          restaurant.tipo.charAt(0).toUpperCase() + restaurant.tipo.slice(1)
+        }
+        restaurantName={restaurant.titulo}
+        restaurantImage={restaurant.capa}
       />
-      {console.log(newFoodList)}
       <HomeContainer>
         <div className="container">
-          <FoodList type={"foodPage"} foods={newFoodList} />
+          <FoodList type={"foodPage"} cardapio={restaurantCardapio} />
         </div>
       </HomeContainer>
     </>

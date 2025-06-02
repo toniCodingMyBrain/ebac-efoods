@@ -32,11 +32,11 @@ export const GlobalCss = createGlobalStyle`
         max-width: 1024px;
         width: 100%;
         margin: 0 auto;
-    }
-
-    @media (max-width: 768px){
-        max-width: 768px;
-        width: 100%;
-        margin: 0 auto;
+        
+        @media (max-width: 768px){
+            max-width: 768px;
+            width: 100%;
+            margin: 0 auto;
+        }
     }
 `;

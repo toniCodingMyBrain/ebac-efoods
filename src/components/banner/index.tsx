@@ -1,5 +1,4 @@
 import logo from "../../public/assets/logo.png";
-import spagettiBanner from "../../public/assets/spagetti_banner.png";
 
 import {
   BannerContainer,
@@ -10,11 +9,17 @@ import {
 
 export type BannerProps = {
   typeBanner: "home" | "foodPage";
-  foodTags?: string;
-  foodName?: string;
+  restaurantTags?: string;
+  restaurantName?: string;
+  restaurantImage?: string;
 };
 
-export const HomeBanner = ({ typeBanner, foodTags, foodName }: BannerProps) => {
+export const HomeBanner = ({
+  typeBanner,
+  restaurantTags,
+  restaurantName,
+  restaurantImage,
+}: BannerProps) => {
   if (typeBanner === "home") {
     return (
       <BannerContainer typeBanner={typeBanner}>
@@ -41,10 +46,10 @@ export const HomeBanner = ({ typeBanner, foodTags, foodName }: BannerProps) => {
           </div>
         </BannerContainer>
         <SubBannerContainer>
-          <BannerImage src={spagettiBanner} alt="" />
+          <BannerImage src={restaurantImage} alt={restaurantName} />
           <div className="content container">
-            <h3 className="tag">{foodTags}</h3>
-            <h3 className="foodName">{foodName}</h3>
+            <h3 className="tag">{restaurantTags}</h3>
+            <h3 className="restaurantName">{restaurantName}</h3>
           </div>
         </SubBannerContainer>
       </>
