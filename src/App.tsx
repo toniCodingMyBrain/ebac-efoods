@@ -2,17 +2,18 @@ import { BrowserRouter } from "react-router-dom";
 import { Footer } from "./components/footer";
 import { GlobalCss } from "./GlobalStyle";
 import PageRoutes from "./routes";
-import { RestaurantsProvider } from "./api/context/restaurants-context-function";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 function App() {
   return (
-    <BrowserRouter>
-      <GlobalCss />
-      <RestaurantsProvider>
+    <Provider store={store}>
+      <BrowserRouter>
+        <GlobalCss />
         <PageRoutes />
-      </RestaurantsProvider>
-      <Footer />
-    </BrowserRouter>
+        <Footer />
+      </BrowserRouter>
+    </Provider>
   );
 }
 
