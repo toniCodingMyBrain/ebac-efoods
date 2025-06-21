@@ -5,6 +5,8 @@ import close from "../../public/icons/close.png";
 import { Food } from "../../services/restaurants-types";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../store/reducers/modal-reducer";
+import { priceFormater } from "../../utils/priceFormater";
+import { addToCart, openCart } from "../../store/reducers/cart-reducer";
 
 type ModalProps = {
   isOpen: boolean;
@@ -19,7 +21,6 @@ export default function Modal({ selectedFood }: ModalProps) {
   const handleCloseModalClick = () => {
     dispatch(closeModal());
   };
-  //if (!isOpen || !selectedFood) return null;
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -28,10 +29,11 @@ export default function Modal({ selectedFood }: ModalProps) {
     }
   };
 
-  const formatedPrice = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(Number(selectedFood.preco));
+  const handleAddToCart = (food: Food) => {
+    dispatch(addToCart(food));
+    dispatch(openCart());
+    dispatch(closeModal());
+  };
 
   return (
     <>
@@ -50,8 +52,12 @@ export default function Modal({ selectedFood }: ModalProps) {
                   <CardTitle type="modal">{selectedFood.nome}</CardTitle>
                   <CardDescription type="modal">{selectedFood.descricao}</CardDescription>
                   <CardDescription type="modal">{`Serve: ${selectedFood.porcao}.`}</CardDescription>
-                  <Button typeButton="secondary" buttonTitle="Adicionar ao carrinho">
-                    {`Adicionar ao carrinho - ${formatedPrice}`}
+                  <Button
+                    typeButton="secondary"
+                    buttonTitle="Adicionar ao carrinho"
+                    onClick={() => handleAddToCart(selectedFood)}
+                  >
+                    {`Adicionar ao carrinho - ${priceFormater(selectedFood.preco)}`}
                   </Button>
                 </div>
               </ModalLayout>

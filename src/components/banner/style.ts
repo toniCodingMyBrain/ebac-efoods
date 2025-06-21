@@ -76,6 +76,7 @@ export const BannerText = styled.p<BannerProps>`
       `
       : `
       font-size: clamp(0.450rem, 4vw, 1.125rem);
+      cursor: pointer;
     `}
   letter-spacing: 0%;
   font-weight: 900;

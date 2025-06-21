@@ -1,11 +1,9 @@
+import { useDispatch, useSelector } from "react-redux";
 import logo from "../../public/assets/logo.png";
 
-import {
-  BannerContainer,
-  BannerImage,
-  BannerText,
-  SubBannerContainer,
-} from "./style";
+import { BannerContainer, BannerImage, BannerText, SubBannerContainer } from "./style";
+import { openCart } from "../../store/reducers/cart-reducer";
+import { RootReducer } from "../../store";
 
 export type BannerProps = {
   typeBanner: "home" | "foodPage";
@@ -20,6 +18,14 @@ export const HomeBanner = ({
   restaurantName,
   restaurantImage,
 }: BannerProps) => {
+  const { food } = useSelector((state: RootReducer) => state.cart);
+
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(openCart());
+  };
+
   if (typeBanner === "home") {
     return (
       <BannerContainer typeBanner={typeBanner}>
@@ -40,8 +46,12 @@ export const HomeBanner = ({
             <a href="/" className="logo">
               <img src={logo} alt="Efood" />
             </a>
-            <BannerText typeBanner={typeBanner}>
-              0 produto(s) no carrinho
+            <BannerText typeBanner={typeBanner} onClick={handleClick}>
+              {food.length > 1
+                ? `${food.length} produtos no carrinho`
+                : food.length == 0
+                ? "Carrinho vazio"
+                : "1 produto no carrinho"}
             </BannerText>
           </div>
         </BannerContainer>

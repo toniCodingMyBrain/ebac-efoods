@@ -49,11 +49,7 @@ export const RestaurantCard = ({
         </CardTitle>
         <CardDescription type={type}>{description}</CardDescription>
         <div className="btn-home-card">
-          <Button
-            typeButton="primary"
-            to={to}
-            buttonTitle="Saiba mais sobre esta incrível iguaria"
-          >
+          <Button typeButton="primary" to={to} buttonTitle="Saiba mais sobre esta incrível iguaria">
             Saiba mais
           </Button>
         </div>

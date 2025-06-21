@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/home";
 import { FoodPage } from "./pages/foodPage/FoodPage";
-import ScrollToTop from "./scrollFunction";
+import ScrollToTop from "./utils/scrollFunction";
 
 const PageRoutes = () => {
   // const { restaurants } = useRestaurantsContext();

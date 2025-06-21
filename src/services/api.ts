@@ -12,11 +12,11 @@ const api = createApi({
       query: () => "restaurantes",
     }),
     //* obter a lista de pratos de cada restaurante
-    getRestaurantByType: builder.query<Restaurant, string>({
-      query: (tipo) => `/${tipo}`,
+    getItaliana: builder.query<Restaurant, void>({
+      query: () => `restaurantes/1`,
     }),
   }),
 });
 
-export const { useGetRestaurantsQuery, useGetRestaurantByTypeQuery } = api;
+export const { useGetRestaurantsQuery, useGetItalianaQuery } = api;
 export default api;
