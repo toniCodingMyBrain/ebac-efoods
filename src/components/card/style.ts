@@ -11,8 +11,9 @@ interface CardStyleProps {
 }
 
 export const CardContainer = styled.div<CardStyleProps>`
-  max-width: ${(CardStyleProps) =>
-    CardStyleProps.type === "home" ? "472px" : "320px"};
+  position: relative;
+
+  max-width: ${(CardStyleProps) => (CardStyleProps.type === "home" ? "472px" : "320px")};
   border: ${(CardStyleProps) =>
     CardStyleProps.type === "home" ? `1px solid ${colors.rose}` : "none"};
   background-color: ${(CardStyleProps) =>
@@ -42,7 +43,7 @@ export const CardHeader = styled.div<CardStyleProps>`
          */
         `background-image: url(${CardStyleProps.image});
       background-size: cover;
-      margin: 8px;
+      margin: 8px 8px 0 8px;
       background-color: ${colors.rose};
       height: 167px;`};
 
@@ -59,38 +60,29 @@ export const CardHeader = styled.div<CardStyleProps>`
 // ToDo: ajustar o botão preso ao fundo sem precisar definir height para descrição
 
 export const CardBody = styled.div<CardStyleProps>`
-  margin-bottom: 8px;
-  margin-inline: 8px;
-  height: 181px;
-  position: relative;
+  padding: 8px 8px;
+  //max-height: 181px;
 
   .btn-home-card {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    margin-top: 16px;
+    display: flex;
+
+    ${CardButton} {
+      justify-content: flex-start;
+    }
   }
 
   ${(CardStyleProps) =>
     CardStyleProps.type === "foodPage"
       ? `
-    height: 163px;
-    display: flex;
-    flex-direction: column;
+    padding-top: 0;  
 
     ${CardButton} {
-      position: absolute;
-      bottom: 0;
-      left: 0;
+      display: block;
       width: 100%;
     }
   `
       : ``}
-
-  @media
-    (max-width: 768px) {
-    margin-bottom: 4px;
-    margin-inline: 4px;
-  }
 `;
 
 export const CardTitle = styled.div<CardStyleProps>`
@@ -99,31 +91,26 @@ export const CardTitle = styled.div<CardStyleProps>`
 
   color: ${(CardStyleProps) => {
     if (CardStyleProps.type === "home") return colors.rose;
-    if (CardStyleProps.type === "foodPage" || CardStyleProps.type === "modal")
-      return colors.white;
+    if (CardStyleProps.type === "foodPage" || CardStyleProps.type === "modal") return colors.white;
   }};
 
   margin-top: ${(CardStyleProps) => {
-    if (CardStyleProps.type === "home" || CardStyleProps.type === "foodPage")
-      return "8px";
+    if (CardStyleProps.type === "home" || CardStyleProps.type === "foodPage") return "8px";
     if (CardStyleProps.type === "modal") return "0";
   }};
 
   margin-bottom: ${(CardStyleProps) => {
-    if (CardStyleProps.type === "home" || CardStyleProps.type === "modal")
-      return "16px";
+    if (CardStyleProps.type === "home" || CardStyleProps.type === "modal") return "16px";
     if (CardStyleProps.type === "foodPage") return "8px";
   }};
 
   font-size: ${(CardStyleProps) => {
-    if (CardStyleProps.type === "home" || CardStyleProps.type === "modal")
-      return "18px";
+    if (CardStyleProps.type === "home" || CardStyleProps.type === "modal") return "18px";
     if (CardStyleProps.type === "foodPage") return "16px";
   }};
 
   ${(CardStyleProps) => {
-    if (CardStyleProps.type === "home")
-      return "justify-content: space-between;";
+    if (CardStyleProps.type === "home") return "justify-content: space-between;";
     if (CardStyleProps.type === "foodPage") return "flex-wrap: wrap;";
   }};
 
@@ -137,6 +124,7 @@ export const CardDescription = styled.p<CardStyleProps>`
   margin-bottom: 16px;
   line-height: 22px;
   font-weight: 400;
+  position: relative;
 
   ${(CardStyleProps) => {
     if (CardStyleProps.type !== "modal")
@@ -164,7 +152,8 @@ export const CardDescription = styled.p<CardStyleProps>`
 
   @media (max-width: 768px) {
     height: 70%;
-    font-size: 8px;
+    font-size: 10px;
+    line-height: 100%;
     margin-bottom: 8px;
   }
 `;

@@ -40,14 +40,16 @@ export const RestaurantCard = ({
         ))}
       </CardHeader>
       <CardBody type={type}>
-        <CardTitle type={type}>
-          <h3>{foodName}</h3>
-          <CardRating>
-            <h3>{rating}</h3>
-            <img src={estrela} alt="Classificação" />
-          </CardRating>
-        </CardTitle>
-        <CardDescription type={type}>{description}</CardDescription>
+        <div className="info-container">
+          <CardTitle type={type}>
+            <h3>{foodName}</h3>
+            <CardRating>
+              <h3>{rating}</h3>
+              <img src={estrela} alt="Classificação" />
+            </CardRating>
+          </CardTitle>
+          <CardDescription type={type}>{description}</CardDescription>
+        </div>
         <div className="btn-home-card">
           <Button typeButton="primary" to={to} buttonTitle="Saiba mais sobre esta incrível iguaria">
             Saiba mais

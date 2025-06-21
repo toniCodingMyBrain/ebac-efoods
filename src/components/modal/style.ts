@@ -14,6 +14,18 @@ export const ModalContainer = styled.div`
     background-color: rgba(0, 0, 0, 0.25);
     z-index: 1000;
   }
+
+  @media (max-width: 1024px) {
+    .container {
+      width: 90%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      width: 90%;
+    }
+  }
 `;
 
 export const ModalCard = styled.div`
