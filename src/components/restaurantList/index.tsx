@@ -14,6 +14,9 @@ export const RestaurantList = ({ type }: RestaurantListProps) => {
 
   if (!isLoading) return <h4>Carregando...</h4>;
   if (!data) return <h4>Erro ao carregar os dados...</h4>;
+  console.log("IsLoading: " + isLoading);
+  console.log("Restaurants: " + restaurants);
+  console.log("Data: " + data);
 
   return (
     <div>
