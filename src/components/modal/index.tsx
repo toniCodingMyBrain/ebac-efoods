@@ -1,29 +1,39 @@
-import useRestaurantsContext from "../../api/context/use-restaurants-context";
 import { Button } from "../button";
 import { CardDescription, CardTitle } from "../card/style";
 import { CloseButton, ModalContainer, ModalCard, ModalLayout } from "./style";
 import close from "../../public/icons/close.png";
+import { Food } from "../../services/restaurants-types";
+import { useDispatch } from "react-redux";
+import { closeModal } from "../../store/reducers/modal-reducer";
+import { priceFormater } from "../../utils/priceFormater";
+import { addToCart, openCart } from "../../store/reducers/cart-reducer";
 
 type ModalProps = {
   isOpen: boolean;
+  selectedFood: Food;
 };
 
-export default function Modal({ isOpen }: ModalProps) {
-  const { closeModal, selectedRestaurantFood } = useRestaurantsContext();
+export default function Modal({ selectedFood }: ModalProps) {
+  //const { closeModal, selectedRestaurantFood } = useRestaurantsContext();
 
-  if (!isOpen || !selectedRestaurantFood) return null;
+  const dispatch = useDispatch();
+
+  const handleCloseModalClick = () => {
+    dispatch(closeModal());
+  };
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
     if (target.classList.contains("modal-backdrop")) {
-      closeModal();
+      dispatch(closeModal());
     }
   };
 
-  const formatedPrice = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(Number(selectedRestaurantFood.preco));
+  const handleAddToCart = (food: Food) => {
+    dispatch(addToCart(food));
+    dispatch(openCart());
+    dispatch(closeModal());
+  };
 
   return (
     <>
@@ -31,31 +41,23 @@ export default function Modal({ isOpen }: ModalProps) {
         <div className="modal-backdrop" onClick={handleBackdropClick}>
           <div className="container">
             <ModalCard>
-              <CloseButton className="close-button" onClick={closeModal}>
+              <CloseButton className="close-button" onClick={handleCloseModalClick}>
                 <img className="close-button" src={close} alt="fechar modal" />
               </CloseButton>
               <ModalLayout>
                 <div className="img-container">
-                  <img
-                    src={selectedRestaurantFood.foto}
-                    alt={selectedRestaurantFood.nome}
-                  />
+                  <img src={selectedFood.foto} alt={selectedFood.nome} />
                 </div>
                 <div className="content">
-                  <CardTitle type="modal">
-                    {selectedRestaurantFood.nome}
-                  </CardTitle>
-                  <CardDescription type="modal">
-                    {selectedRestaurantFood.descricao}
-                  </CardDescription>
-                  <CardDescription type="modal">
-                    {`Serve: ${selectedRestaurantFood.porcao}.`}
-                  </CardDescription>
+                  <CardTitle type="modal">{selectedFood.nome}</CardTitle>
+                  <CardDescription type="modal">{selectedFood.descricao}</CardDescription>
+                  <CardDescription type="modal">{`Serve: ${selectedFood.porcao}.`}</CardDescription>
                   <Button
                     typeButton="secondary"
                     buttonTitle="Adicionar ao carrinho"
+                    onClick={() => handleAddToCart(selectedFood)}
                   >
-                    {`Adicionar ao carrinho - ${formatedPrice}`}
+                    {`Adicionar ao carrinho - ${priceFormater(selectedFood.preco)}`}
                   </Button>
                 </div>
               </ModalLayout>
