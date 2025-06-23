@@ -17,7 +17,6 @@ const initialState: FoodState = {
   },
   isOpen: false,
 };
-
 const modalSlice = createSlice({
   name: "modal",
   initialState,

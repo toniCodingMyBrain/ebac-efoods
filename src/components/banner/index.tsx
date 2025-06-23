@@ -18,7 +18,7 @@ export const HomeBanner = ({
   restaurantName,
   restaurantImage,
 }: BannerProps) => {
-  const { food } = useSelector((state: RootReducer) => state.cart);
+  const { food } = useSelector((state: RootReducer) => state.persistedReducer.cart);
 
   const dispatch = useDispatch();
 

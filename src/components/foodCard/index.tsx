@@ -15,7 +15,7 @@ type FoodListProps = {
 const FoodList = ({ type, cardapio }: FoodListProps) => {
   // const { openModal, isModalOpen } = useRestaurantsContext();
   const { isOpen: isModalOpen, food: selectedFood } = useSelector(
-    (state: RootReducer) => state.modal
+    (state: RootReducer) => state.persistedReducer.modal
   );
 
   const dispatch = useDispatch();

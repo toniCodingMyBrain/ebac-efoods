@@ -6,7 +6,7 @@ import { RootReducer } from "../../store";
 import { closeCart, removeFromCart } from "../../store/reducers/cart-reducer";
 
 const Cart = () => {
-  const { isOpen, food } = useSelector((state: RootReducer) => state.cart);
+  const { isOpen, food } = useSelector((state: RootReducer) => state.persistedReducer.cart);
 
   const dispatch = useDispatch();
 
@@ -28,8 +28,8 @@ const Cart = () => {
     <>
       <CartContainer onClick={handleCloseCart} className={isOpen ? "is-open" : ""}>
         <CartSidebar>
-          {food.map((item) => (
-            <ul>
+          <ul>
+            {food.map((item) => (
               <CartItem>
                 <img src={item.foto} alt={item.descricao} />
                 <div>
@@ -38,8 +38,8 @@ const Cart = () => {
                 </div>
                 <button type="button" onClick={() => handleRemoveItem(item.id)} />
               </CartItem>
-            </ul>
-          ))}
+            ))}
+          </ul>
           <BuyInfos>
             <h4>Valor Total</h4>
             <h4>{priceFormater(getTotalPrice())}</h4>
