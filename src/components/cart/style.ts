@@ -9,7 +9,7 @@ export const CartContainer = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: none;
   justify-content: flex-end;
   background-color: rgba(0, 0, 0, 0.8);
@@ -17,6 +17,7 @@ export const CartContainer = styled.div`
 
   &.is-open {
     display: flex;
+    flex: 1;
   }
 `;
 
@@ -32,8 +33,14 @@ export const CartSidebar = styled.aside`
     width: 100%;
   }
 
+  //* Adicionando rolagem e tirando a scroll-bar da lista de itens no carrinho
   ul {
-    margin-bottom: 40px;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 
@@ -42,6 +49,7 @@ export const CartItem = styled.li`
   padding: 8px 8px;
   background-color: ${colors.beige};
   position: relative;
+  margin-bottom: 40px;
 
   img {
     width: 80px;
