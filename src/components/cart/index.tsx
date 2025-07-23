@@ -1,52 +1,47 @@
 import { useDispatch, useSelector } from "react-redux";
-import { priceFormater } from "../../utils/priceFormater";
-import { Button } from "../button";
-import { BuyInfos, CartContainer, CartItem, CartSidebar } from "./style";
+
+import { CartContainer, CartSidebar } from "./style";
 import { RootReducer } from "../../store";
-import { closeCart, removeFromCart } from "../../store/reducers/cart-reducer";
+import { closeCart } from "../../store/reducers/cart-reducer";
+import { CartProducts } from "../cart-products";
+import { StepAddressForm } from "../form/addressForm";
+import { StepPaymentForm } from "../form/paymentForm";
+import { StepSuccessForm } from "../form/successForm";
+import { useEffect, useRef } from "react";
 
 const Cart = () => {
-  const { isOpen, food } = useSelector((state: RootReducer) => state.persistedReducer.cart);
-
+  const { isOpen, checkoutState } = useSelector(
+    (state: RootReducer) => state.persistedReducer.cart
+  );
+  const { step } = checkoutState;
   const dispatch = useDispatch();
 
-  const handleCloseCart = () => {
-    dispatch(closeCart());
-  };
+  const cartRef = useRef<HTMLDivElement | null>(null);
 
-  const handleRemoveItem = (id: number) => {
-    dispatch(removeFromCart(id));
-  };
+  useEffect(() => {
+    function handleOutsideClick(event: MouseEvent) {
+      if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
+        dispatch(closeCart());
+      }
+    }
 
-  const getTotalPrice = () => {
-    return food.reduce((acumulator, nextPrice) => {
-      return (acumulator += Number(nextPrice.preco));
-    }, 0);
-  };
+    if (isOpen === true) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isOpen, dispatch]);
 
   return (
     <>
-      <CartContainer onClick={handleCloseCart} className={isOpen ? "is-open" : ""}>
-        <CartSidebar>
-          <ul>
-            {food.map((item) => (
-              <CartItem>
-                <img src={item.foto} alt={item.descricao} />
-                <div>
-                  <h4>{item.nome}</h4>
-                  <p>{priceFormater(item.preco)}</p>
-                </div>
-                <button type="button" onClick={() => handleRemoveItem(item.id)} />
-              </CartItem>
-            ))}
-          </ul>
-          <BuyInfos>
-            <h4>Valor Total</h4>
-            <h4>{priceFormater(getTotalPrice())}</h4>
-          </BuyInfos>
-          <Button typeButton="secondary" buttonTitle="Prosseguir para comprar" to="/">
-            Comprar
-          </Button>
+      <CartContainer className={isOpen ? "is-open" : ""}>
+        <CartSidebar ref={cartRef}>
+          {step === 1 && <CartProducts />}
+          {step === 2 && <StepAddressForm />}
+          {step === 3 && <StepPaymentForm />}
+          {step === 4 && <StepSuccessForm />}
         </CartSidebar>
       </CartContainer>
     </>
