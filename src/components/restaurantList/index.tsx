@@ -1,5 +1,5 @@
 import { useGetRestaurantsQuery } from "../../services/api";
-import { Restaurant } from "../../services/restaurants-types";
+import { Restaurant } from "../../services/model/restaurants-types";
 import { RestaurantCard } from "../card";
 import { List } from "./style";
 
@@ -8,9 +8,11 @@ export type RestaurantListProps = {
 };
 
 export const RestaurantList = ({ type }: RestaurantListProps) => {
-  // const { restaurants } = useRestaurantsContext();
-  const { data, isLoading } = useGetRestaurantsQuery();
+  const { data, isLoading, error } = useGetRestaurantsQuery();
   const restaurants = data as Restaurant[];
+
+  console.log(error);
+  console.log(data);
 
   if (isLoading) return <h4>Carregando...</h4>;
   if (!data) return <h4>Erro ao carregar os dados...</h4>;

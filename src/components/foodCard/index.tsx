@@ -1,4 +1,4 @@
-import { Food } from "../../services/restaurants-types";
+import { Food } from "../../services/model/restaurants-types";
 import { Button } from "../button";
 import { CardBody, CardContainer, CardDescription, CardHeader, CardTitle } from "../card/style";
 import Modal from "../modal";
