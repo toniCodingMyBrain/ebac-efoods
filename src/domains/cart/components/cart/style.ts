@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { colors } from "../../GlobalStyle";
-import { CardButton } from "../button/style";
+import { colors } from "../../../../GlobalStyle";
+import { CardButton } from "../../../../components/layout/button/style";
 
 import trashIcon from "../../public/icons/trash.png";
 

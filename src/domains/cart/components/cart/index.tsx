@@ -9,13 +9,38 @@ import {
   FormContainer,
   RowBlock,
 } from "./style";
-import { RootReducer } from "../../store";
-import { closeCart, removeFromCart } from "../../store/reducers/cart-reducer";
+import { RootReducer } from "../../../../store";
+import { closeCart, removeFromCart } from "../../../../store/reducers/cart-reducer";
 import { useEffect, useRef, useState } from "react";
-import { priceFormater } from "../../utils/priceFormater";
-import { Button } from "../button";
+import { priceFormater } from "../../../../utils/priceFormater";
+import { Button } from "../../../../components/layout/button";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { deliverySchemaValidation } from "../../schemas/delivery-schema";
+import { paymentSchemaValidation } from "../../schemas/payment-schema";
 
 const Cart = () => {
+  const cartForm = useFormik({
+    initialValues: {
+      fullName: "",
+      address: "",
+      city: "",
+      cep: "",
+      number: "",
+      description: "",
+      cardName: "",
+      cardNumber: "",
+      cvv: "",
+      expireMonth: "",
+      expireYear: "",
+    },
+    validationSchema: yup.object({
+      delivery: deliverySchemaValidation,
+      payment: paymentSchemaValidation,
+    }),
+    onSubmit: () => {},
+  });
+
   const { isOpen, food } = useSelector((state: RootReducer) => state.persistedReducer.cart);
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Food } from "../../services/model/restaurants-types";
+import { Food } from "../../services/models/restaurants-types";
 
 type Address = {
   name: string;

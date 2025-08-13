@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import logo from "../../public/assets/logo.png";
 
 import { BannerContainer, BannerImage, BannerText, SubBannerContainer } from "./style";
-import { openCart } from "../../store/reducers/cart-reducer";
-import { RootReducer } from "../../store";
+import { openCart } from "../../../store/reducers/cart-reducer";
+import { RootReducer } from "../../../store";
 
 export type BannerProps = {
   typeBanner: "home" | "foodPage";

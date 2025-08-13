@@ -1,6 +1,6 @@
-import { useGetRestaurantsQuery } from "../../services/api";
-import { Restaurant } from "../../services/model/restaurants-types";
-import { RestaurantCard } from "../card";
+import { useGetRestaurantsQuery } from "../../../services/api";
+import { Restaurant } from "../../../services/models/restaurants-types";
+import { RestaurantCard } from "../../ui/card";
 import { List } from "./style";
 
 export type RestaurantListProps = {

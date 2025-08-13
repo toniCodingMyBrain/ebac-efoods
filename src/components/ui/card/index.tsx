@@ -9,7 +9,7 @@ import {
 } from "./style";
 
 import estrela from "../../public/icons/estrela.png";
-import { Button } from "../button";
+import { Button } from "../../layout/button";
 
 export type FoodCardProps = {
   type: "home";

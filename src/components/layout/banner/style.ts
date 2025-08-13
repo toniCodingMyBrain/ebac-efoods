@@ -3,7 +3,7 @@ import styled from "styled-components";
 import banner from "../../public/assets/banner.png";
 
 import { BannerProps } from ".";
-import { colors } from "../../GlobalStyle";
+import { colors } from "../../../GlobalStyle";
 
 export const BannerContainer = styled.div<BannerProps>`
   background-image: url(${banner});

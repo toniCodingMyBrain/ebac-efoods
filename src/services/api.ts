@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Restaurant } from "./model/restaurants-types";
+import { Restaurant } from "./models/restaurants-types";
 
 const api = createApi({
   reducerPath: "efoodApi",
