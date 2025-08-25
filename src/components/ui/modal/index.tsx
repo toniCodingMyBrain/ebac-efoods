@@ -1,7 +1,7 @@
 import { Button } from "../../layout/button";
 import { CardDescription, CardTitle } from "../card/style";
 import { CloseButton, ModalContainer, ModalCard, ModalLayout } from "./style";
-import close from "../../public/icons/close.png";
+import close from "../../../public/icons/close.png";
 import { Food } from "../../../services/models/restaurants-types";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../../store/reducers/modal-reducer";

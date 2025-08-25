@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors } from "../../../../GlobalStyle";
 import { CardButton } from "../../../../components/layout/button/style";
 
-import trashIcon from "../../public/icons/trash.png";
+import trashIcon from "../../../../public/icons/trash.png";
 
 export type FormProps = {
   inputRowType?: "normal" | "grid" | "double";

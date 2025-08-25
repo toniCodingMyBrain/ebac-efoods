@@ -1,7 +1,7 @@
-import logo from "../../public/assets/logo.png";
-import instagramIcon from "../../public/icons/instagram.png";
-import facebookIcon from "../../public/icons/facebook.png";
-import twittericon from "../../public/icons/twitter.png";
+import logo from "../../../public/assets/logo.png";
+import instagramIcon from "../../../public/icons/instagram.png";
+import facebookIcon from "../../../public/icons/facebook.png";
+import twittericon from "../../../public/icons/twitter.png";
 import { FooterContainer, FooterLinks, FooterText } from "./style";
 
 export const Footer = () => (
@@ -27,9 +27,8 @@ export const Footer = () => (
       </FooterLinks>
     </div>
     <FooterText>
-      A efood é uma plataforma para divulgação de estabelecimentos, a
-      responsabilidade pela entrega, qualidade dos produtos é toda do
-      estabelecimento contratado.
+      A efood é uma plataforma para divulgação de estabelecimentos, a responsabilidade pela entrega,
+      qualidade dos produtos é toda do estabelecimento contratado.
     </FooterText>
   </FooterContainer>
 );

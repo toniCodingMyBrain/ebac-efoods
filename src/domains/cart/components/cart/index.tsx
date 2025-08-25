@@ -108,106 +108,107 @@ const Cart = () => {
               </Button>
             </>
           )}
-          {step === 2 && (
-            <FormContainer>
-              <h4>Entrega</h4>
-              <form>
-                <div>
-                  <RowBlock>
-                    <label htmlFor="fullName">Quem irá receber</label>
-                    <input id="fullName" type="text" />
-                  </RowBlock>
-                  <RowBlock>
-                    <label htmlFor="address">Endereço</label>
-                    <input id="address" type="text" />
-                  </RowBlock>
-                  <RowBlock>
-                    <label htmlFor="city">Cidade</label>
-                    <input id="city" type="text" />
-                  </RowBlock>
-                  <RowBlock inputRowType="double">
-                    <div>
-                      <label htmlFor="cep">CEP</label>
-                      <input id="cep" type="text" />
-                    </div>
-                    <div>
-                      <label htmlFor="number">Número</label>
-                      <input id="number" type="text" />
-                    </div>
-                  </RowBlock>
-                  <RowBlock>
-                    <label htmlFor="description">Complemento</label>
-                    <input id="description" type="text" />
-                  </RowBlock>
-                </div>
-                <div className="button-group">
-                  <Button
-                    typeButton="secondary"
-                    buttonTitle="Prosseguir para formulário de cartão"
-                    onClick={() => setStep(3)}
-                  >
-                    Prosseguir
-                  </Button>
-                  <Button
-                    typeButton="secondary"
-                    buttonTitle="retornar ao carrinho"
-                    onClick={() => setStep(1)}
-                  >
-                    Retornar
-                  </Button>
-                </div>
-              </form>
-            </FormContainer>
-          )}
-          {step === 3 && (
-            <FormContainer>
-              <h4>Pagamento - {priceFormater(getTotalPrice())}</h4>
-              <form>
-                <div>
-                  <RowBlock>
-                    <label htmlFor="cardName">Nome no cartão</label>
-                    <input id="cardName" type="text" />
-                  </RowBlock>
-                  <RowBlock inputRowType="grid">
-                    <div>
-                      <label htmlFor="cardNumber">Número do cartão</label>
-                      <input id="cardNumber" type="text" />
-                    </div>
-                    <div>
-                      <label htmlFor="cvv">CVV</label>
-                      <input id="cvv" type="text" />
-                    </div>
-                  </RowBlock>
-                  <RowBlock inputRowType="double">
-                    <div>
-                      <label htmlFor="expireMonth">Mês de vencimento</label>
-                      <input id="expireMonth" type="text" />
-                    </div>
-                    <div>
-                      <label htmlFor="expireYear">Ano de vencimento</label>
-                      <input id="expireYear" type="text" />
-                    </div>
-                  </RowBlock>
-                </div>
-                <div className="button-group">
-                  <Button
-                    typeButton="secondary"
-                    buttonTitle="Prosseguir para resposta do pedido"
-                    onClick={() => setStep(4)}
-                  >
-                    Finalizar pagamento
-                  </Button>
-                  <Button
-                    typeButton="secondary"
-                    buttonTitle="retornar ao carrinho"
-                    onClick={() => setStep(1)}
-                  >
-                    Retornar
-                  </Button>
-                </div>
-              </form>
-            </FormContainer>
-          )}
+
+          <FormContainer>
+            <h4>Entrega</h4>
+            <form onSubmit={cartForm.handleSubmit}>
+              {step === 2 && (
+                <>
+                  <div>
+                    <RowBlock>
+                      <label htmlFor="fullName">Quem irá receber</label>
+                      <input id="fullName" type="text" />
+                    </RowBlock>
+                    <RowBlock>
+                      <label htmlFor="address">Endereço</label>
+                      <input id="address" type="text" />
+                    </RowBlock>
+                    <RowBlock>
+                      <label htmlFor="city">Cidade</label>
+                      <input id="city" type="text" />
+                    </RowBlock>
+                    <RowBlock inputRowType="double">
+                      <div>
+                        <label htmlFor="cep">CEP</label>
+                        <input id="cep" type="text" />
+                      </div>
+                      <div>
+                        <label htmlFor="number">Número</label>
+                        <input id="number" type="text" />
+                      </div>
+                    </RowBlock>
+                    <RowBlock>
+                      <label htmlFor="description">Complemento</label>
+                      <input id="description" type="text" />
+                    </RowBlock>
+                  </div>
+                  <div className="button-group">
+                    <Button
+                      typeButton="secondary"
+                      buttonTitle="Prosseguir para formulário de cartão"
+                      onClick={() => setStep(3)}
+                    >
+                      Prosseguir
+                    </Button>
+                    <Button
+                      typeButton="secondary"
+                      buttonTitle="retornar ao carrinho"
+                      onClick={() => setStep(1)}
+                    >
+                      Retornar
+                    </Button>
+                  </div>
+                </>
+              )}
+              {step === 3 && (
+                <>
+                  <h4>Pagamento - {priceFormater(getTotalPrice())}</h4>
+                  <div>
+                    <RowBlock>
+                      <label htmlFor="cardName">Nome no cartão</label>
+                      <input id="cardName" type="text" />
+                    </RowBlock>
+                    <RowBlock inputRowType="grid">
+                      <div>
+                        <label htmlFor="cardNumber">Número do cartão</label>
+                        <input id="cardNumber" type="text" />
+                      </div>
+                      <div>
+                        <label htmlFor="cvv">CVV</label>
+                        <input id="cvv" type="text" />
+                      </div>
+                    </RowBlock>
+                    <RowBlock inputRowType="double">
+                      <div>
+                        <label htmlFor="expireMonth">Mês de vencimento</label>
+                        <input id="expireMonth" type="text" />
+                      </div>
+                      <div>
+                        <label htmlFor="expireYear">Ano de vencimento</label>
+                        <input id="expireYear" type="text" />
+                      </div>
+                    </RowBlock>
+                  </div>
+                  <div className="button-group">
+                    <Button
+                      typeButton="secondary"
+                      buttonTitle="Prosseguir para resposta do pedido"
+                      onClick={() => setStep(4)}
+                    >
+                      Finalizar pagamento
+                    </Button>
+                    <Button
+                      typeButton="secondary"
+                      buttonTitle="retornar ao carrinho"
+                      onClick={() => setStep(1)}
+                    >
+                      Retornar
+                    </Button>
+                  </div>
+                </>
+              )}
+            </form>
+          </FormContainer>
           {step === 4 && (
             <FinishedOrder>
               <h4>Pedido realizado - XXXXX</h4>

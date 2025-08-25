@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import banner from "../../public/assets/banner.png";
+import banner from "../../../public/assets/banner.png";
 
 import { BannerProps } from ".";
 import { colors } from "../../../GlobalStyle";
