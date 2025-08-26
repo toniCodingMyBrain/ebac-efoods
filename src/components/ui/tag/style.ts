@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../GlobalStyle";
+import { colors } from "../../../GlobalStyle";
 
 export const TagContainer = styled.div`
   background-color: ${colors.rose};

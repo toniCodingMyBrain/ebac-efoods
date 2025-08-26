@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../GlobalStyle";
+import { colors } from "../../../GlobalStyle";
 
 export const ModalContainer = styled.div`
   .modal-backdrop {

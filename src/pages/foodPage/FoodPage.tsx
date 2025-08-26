@@ -1,6 +1,6 @@
 import { HomeContainer } from "../home/style";
-import { HomeBanner } from "../../components/banner";
-import FoodList from "../../components/foodCard";
+import { HomeBanner } from "../../components/layout/banner";
+import FoodList from "../../components/shared/foodCard";
 import { useParams } from "react-router-dom";
 import { useGetRestaurantsQuery } from "../../services/api";
 

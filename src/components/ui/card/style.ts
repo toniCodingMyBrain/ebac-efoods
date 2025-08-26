@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { colors } from "../../GlobalStyle";
+import { colors } from "../../../GlobalStyle";
 
 /* import { FoodCardProps } from "."; */
 import { TagContainer } from "../tag/style";
-import { CardButton } from "../button/style";
+import { CardButton } from "../../layout/button/style";
 
 interface CardStyleProps {
   type: "home" | "foodPage" | "modal";

@@ -1,10 +1,16 @@
-import { Food } from "../../services/restaurants-types";
-import { Button } from "../button";
-import { CardBody, CardContainer, CardDescription, CardHeader, CardTitle } from "../card/style";
-import Modal from "../modal";
+import { Food } from "../../../services/models/restaurants-types";
+import { Button } from "../../layout/button";
+import {
+  CardBody,
+  CardContainer,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../../ui/card/style";
+import Modal from "../../ui/modal";
 import { useDispatch, useSelector } from "react-redux";
-import { openModal, selectFood } from "../../store/reducers/modal-reducer";
-import { RootReducer } from "../../store";
+import { openModal, selectFood } from "../../../store/reducers/modal-reducer";
+import { RootReducer } from "../../../store";
 import { List } from "../restaurantList/style";
 
 type FoodListProps = {

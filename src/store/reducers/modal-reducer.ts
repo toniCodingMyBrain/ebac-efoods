@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Food } from "../../services/restaurants-types";
+import { Food } from "../../services/models/restaurants-types";
 
 interface FoodState {
   food: Food;

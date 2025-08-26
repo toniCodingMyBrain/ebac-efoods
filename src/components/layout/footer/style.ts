@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import banner from "../../public/assets/banner.png";
+import banner from "../../../public/assets/banner.png";
 
 export const FooterContainer = styled.footer`
   background-image: url(${banner});
