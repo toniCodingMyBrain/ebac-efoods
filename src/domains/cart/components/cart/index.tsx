@@ -22,17 +22,21 @@ import { paymentSchemaValidation } from "../../schemas/payment-schema";
 const Cart = () => {
   const cartForm = useFormik({
     initialValues: {
-      fullName: "",
-      address: "",
-      city: "",
-      cep: "",
-      number: "",
-      description: "",
-      cardName: "",
-      cardNumber: "",
-      cvv: "",
-      expireMonth: "",
-      expireYear: "",
+      addressForm: {
+        fullName: "",
+        address: "",
+        city: "",
+        cep: "",
+        number: "",
+        description: "",
+      },
+      paymentForm: {
+        cardName: "",
+        cardNumber: "",
+        cvv: "",
+        expireMonth: "",
+        expireYear: "",
+      },
     },
     validationSchema: yup.object({
       delivery: deliverySchemaValidation,
@@ -55,9 +59,11 @@ const Cart = () => {
     }, 0);
   };
 
-  const nextStepCart = () => {
-    setStep(2);
-  };
+  /*  const nextStepCart = () => {
+    if (step === 1 && food.length > 0) {
+      setStep(2);
+    }
+  }; */
 
   const cartRef = useRef<HTMLDivElement | null>(null);
 
@@ -102,44 +108,79 @@ const Cart = () => {
               <Button
                 typeButton="secondary"
                 buttonTitle="Prosseguir para comprar"
-                onClick={nextStepCart}
+                onClick={() => setStep(2)}
               >
                 Comprar
               </Button>
             </>
           )}
-
           <FormContainer>
             <h4>Entrega</h4>
             <form onSubmit={cartForm.handleSubmit}>
-              {step === 2 && (
+              {step === 2 && food.length > 0 && (
                 <>
                   <div>
                     <RowBlock>
                       <label htmlFor="fullName">Quem irá receber</label>
-                      <input id="fullName" type="text" />
+                      <input
+                        id="fullName"
+                        type="text"
+                        value={cartForm.values.addressForm.fullName}
+                        onChange={cartForm.handleChange}
+                        onBlur={cartForm.handleBlur}
+                      />
                     </RowBlock>
                     <RowBlock>
                       <label htmlFor="address">Endereço</label>
-                      <input id="address" type="text" />
+                      <input
+                        id="address"
+                        type="text"
+                        value={cartForm.values.addressForm.address}
+                        onChange={cartForm.handleChange}
+                        onBlur={cartForm.handleBlur}
+                      />
                     </RowBlock>
                     <RowBlock>
                       <label htmlFor="city">Cidade</label>
-                      <input id="city" type="text" />
+                      <input
+                        id="city"
+                        type="text"
+                        value={cartForm.values.addressForm.city}
+                        onChange={cartForm.handleChange}
+                        onBlur={cartForm.handleBlur}
+                      />
                     </RowBlock>
                     <RowBlock inputRowType="double">
                       <div>
                         <label htmlFor="cep">CEP</label>
-                        <input id="cep" type="text" />
+                        <input
+                          id="cep"
+                          type="text"
+                          value={cartForm.values.addressForm.cep}
+                          onChange={cartForm.handleChange}
+                          onBlur={cartForm.handleBlur}
+                        />
                       </div>
                       <div>
                         <label htmlFor="number">Número</label>
-                        <input id="number" type="text" />
+                        <input
+                          id="number"
+                          type="text"
+                          value={cartForm.values.addressForm.number}
+                          onChange={cartForm.handleChange}
+                          onBlur={cartForm.handleBlur}
+                        />
                       </div>
                     </RowBlock>
                     <RowBlock>
                       <label htmlFor="description">Complemento</label>
-                      <input id="description" type="text" />
+                      <input
+                        id="description"
+                        type="text"
+                        value={cartForm.values.addressForm.description}
+                        onChange={cartForm.handleChange}
+                        onBlur={cartForm.handleBlur}
+                      />
                     </RowBlock>
                   </div>
                   <div className="button-group">
