@@ -18,8 +18,20 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { deliverySchemaValidation } from "../../schemas/delivery-schema";
 import { paymentSchemaValidation } from "../../schemas/payment-schema";
+import { usePurchaseMutation } from "../../../../services/api";
 
 const Cart = () => {
+  const [purchase, { data, isSuccess, status }] = usePurchaseMutation();
+  const { isOpen, food, checkoutState } = useSelector(
+    (state: RootReducer) => state.persistedReducer.cart
+  );
+  const dispatch = useDispatch();
+
+  console.log(data);
+  console.log(isSuccess);
+  console.log(status);
+  console.log();
+
   const cartForm = useFormik({
     initialValues: {
       addressForm: {
@@ -42,11 +54,38 @@ const Cart = () => {
       delivery: deliverySchemaValidation,
       payment: paymentSchemaValidation,
     }),
-    onSubmit: () => {},
+    onSubmit: (values) =>
+      purchase({
+        products: [
+          {
+            id: 2,
+            price: 100,
+          },
+        ],
+        delivery: {
+          receiver: values.addressForm.fullName,
+          address: {
+            description: values.addressForm.address,
+            city: values.addressForm.city,
+            zipCode: values.addressForm.cep,
+            number: Number(values.addressForm.number),
+            complement: values.addressForm.description,
+          },
+        },
+        payment: {
+          card: {
+            name: values.paymentForm.cardName,
+            number: values.paymentForm.cardNumber,
+            code: Number(values.paymentForm.cvv),
+            expires: {
+              month: Number(values.paymentForm.expireMonth),
+              year: Number(values.paymentForm.expireYear),
+            },
+          },
+        },
+      }),
   });
 
-  const { isOpen, food } = useSelector((state: RootReducer) => state.persistedReducer.cart);
-  const dispatch = useDispatch();
   const [step, setStep] = useState(1);
 
   const handleRemoveItem = (id: number) => {
@@ -59,11 +98,32 @@ const Cart = () => {
     }, 0);
   };
 
-  /*  const nextStepCart = () => {
+  const nextStepCart = () => {
     if (step === 1 && food.length > 0) {
       setStep(2);
     }
-  }; */
+    if (
+      step === 2 &&
+      cartForm.values.addressForm.address.trim().length > 0 &&
+      cartForm.values.addressForm.fullName.trim().length > 0 &&
+      cartForm.values.addressForm.city.trim().length > 0 &&
+      cartForm.values.addressForm.cep.trim().length > 0 &&
+      cartForm.values.addressForm.number.trim().length > 0 &&
+      cartForm.values.addressForm.description.trim().length > 0
+    ) {
+      setStep(3);
+    }
+    if (
+      step === 3 &&
+      cartForm.values.paymentForm.cardName.trim().length &&
+      cartForm.values.paymentForm.cardNumber.trim().length &&
+      cartForm.values.paymentForm.cvv.trim().length &&
+      cartForm.values.paymentForm.expireMonth.trim().length &&
+      cartForm.values.paymentForm.expireYear.trim().length
+    ) {
+      setStep(4);
+    }
+  };
 
   const cartRef = useRef<HTMLDivElement | null>(null);
 
@@ -108,23 +168,24 @@ const Cart = () => {
               <Button
                 typeButton="secondary"
                 buttonTitle="Prosseguir para comprar"
-                onClick={() => setStep(2)}
+                onClick={nextStepCart}
               >
                 Comprar
               </Button>
             </>
           )}
           <FormContainer>
-            <h4>Entrega</h4>
             <form onSubmit={cartForm.handleSubmit}>
-              {step === 2 && food.length > 0 && (
+              {step === 2 && (
                 <>
+                  <h4>Entrega</h4>
                   <div>
                     <RowBlock>
                       <label htmlFor="fullName">Quem irá receber</label>
                       <input
                         id="fullName"
                         type="text"
+                        name="addressForm.fullName"
                         value={cartForm.values.addressForm.fullName}
                         onChange={cartForm.handleChange}
                         onBlur={cartForm.handleBlur}
@@ -135,6 +196,7 @@ const Cart = () => {
                       <input
                         id="address"
                         type="text"
+                        name="addressForm.address"
                         value={cartForm.values.addressForm.address}
                         onChange={cartForm.handleChange}
                         onBlur={cartForm.handleBlur}
@@ -145,6 +207,7 @@ const Cart = () => {
                       <input
                         id="city"
                         type="text"
+                        name="addressForm.city"
                         value={cartForm.values.addressForm.city}
                         onChange={cartForm.handleChange}
                         onBlur={cartForm.handleBlur}
@@ -156,6 +219,7 @@ const Cart = () => {
                         <input
                           id="cep"
                           type="text"
+                          name="addressForm.cep"
                           value={cartForm.values.addressForm.cep}
                           onChange={cartForm.handleChange}
                           onBlur={cartForm.handleBlur}
@@ -166,6 +230,7 @@ const Cart = () => {
                         <input
                           id="number"
                           type="text"
+                          name="addressForm.number"
                           value={cartForm.values.addressForm.number}
                           onChange={cartForm.handleChange}
                           onBlur={cartForm.handleBlur}
@@ -177,6 +242,7 @@ const Cart = () => {
                       <input
                         id="description"
                         type="text"
+                        name="addressForm.description"
                         value={cartForm.values.addressForm.description}
                         onChange={cartForm.handleChange}
                         onBlur={cartForm.handleBlur}
@@ -187,7 +253,7 @@ const Cart = () => {
                     <Button
                       typeButton="secondary"
                       buttonTitle="Prosseguir para formulário de cartão"
-                      onClick={() => setStep(3)}
+                      onClick={nextStepCart}
                     >
                       Prosseguir
                     </Button>
@@ -207,26 +273,61 @@ const Cart = () => {
                   <div>
                     <RowBlock>
                       <label htmlFor="cardName">Nome no cartão</label>
-                      <input id="cardName" type="text" />
+                      <input
+                        id="cardName"
+                        type="text"
+                        name="paymentForm.cardName"
+                        value={cartForm.values.paymentForm.cardName}
+                        onChange={cartForm.handleChange}
+                        onBlur={cartForm.handleBlur}
+                      />
                     </RowBlock>
                     <RowBlock inputRowType="grid">
                       <div>
                         <label htmlFor="cardNumber">Número do cartão</label>
-                        <input id="cardNumber" type="text" />
+                        <input
+                          id="cardNumber"
+                          type="text"
+                          name="paymentForm.cardNumber"
+                          value={cartForm.values.paymentForm.cardNumber}
+                          onChange={cartForm.handleChange}
+                          onBlur={cartForm.handleBlur}
+                        />
                       </div>
                       <div>
                         <label htmlFor="cvv">CVV</label>
-                        <input id="cvv" type="text" />
+                        <input
+                          id="cvv"
+                          type="text"
+                          name="paymentForm.cvv"
+                          value={cartForm.values.paymentForm.cvv}
+                          onChange={cartForm.handleChange}
+                          onBlur={cartForm.handleBlur}
+                        />
                       </div>
                     </RowBlock>
                     <RowBlock inputRowType="double">
                       <div>
                         <label htmlFor="expireMonth">Mês de vencimento</label>
-                        <input id="expireMonth" type="text" />
+                        <input
+                          id="expireMonth"
+                          type="text"
+                          name="paymentForm.expireMonth"
+                          value={cartForm.values.paymentForm.expireMonth}
+                          onChange={cartForm.handleChange}
+                          onBlur={cartForm.handleBlur}
+                        />
                       </div>
                       <div>
                         <label htmlFor="expireYear">Ano de vencimento</label>
-                        <input id="expireYear" type="text" />
+                        <input
+                          id="expireYear"
+                          type="text"
+                          name="paymentForm.expireYear"
+                          value={cartForm.values.paymentForm.expireYear}
+                          onChange={cartForm.handleChange}
+                          onBlur={cartForm.handleBlur}
+                        />
                       </div>
                     </RowBlock>
                   </div>
@@ -234,7 +335,7 @@ const Cart = () => {
                     <Button
                       typeButton="secondary"
                       buttonTitle="Prosseguir para resposta do pedido"
-                      onClick={() => setStep(4)}
+                      onClick={nextStepCart}
                     >
                       Finalizar pagamento
                     </Button>
@@ -250,9 +351,9 @@ const Cart = () => {
               )}
             </form>
           </FormContainer>
-          {step === 4 && (
+          {step === 4 && isSuccess && (
             <FinishedOrder>
-              <h4>Pedido realizado - XXXXX</h4>
+              <h4>Pedido realizado - {data.orderId}</h4>
               <div>
                 <p>
                   Estamos felizes em informar que seu pedido já está em processo de preparação e, em
