@@ -1,4 +1,3 @@
-import { Food } from "../../../services/models/restaurants-types";
 import { Button } from "../../layout/button";
 import * as S from "../../ui/card/style";
 import Modal from "../../ui/modal";
