@@ -14,8 +14,6 @@ type ModalProps = {
 };
 
 export default function Modal({ selectedFood }: ModalProps) {
-  //const { closeModal, selectedRestaurantFood } = useRestaurantsContext();
-
   const dispatch = useDispatch();
 
   const handleCloseModalClick = () => {

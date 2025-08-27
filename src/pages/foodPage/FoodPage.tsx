@@ -1,4 +1,4 @@
-import { HomeContainer } from "../home/style";
+import * as S from "../home/style";
 import { HomeBanner } from "../../components/layout/banner";
 import FoodList from "../../components/shared/foodCard";
 import { useParams } from "react-router-dom";
@@ -21,11 +21,11 @@ export const FoodPage = () => {
           restaurantName={restaurant.titulo}
           restaurantImage={restaurant.capa}
         />
-        <HomeContainer>
+        <S.HomeContainer>
           <div className="container">
             <FoodList type={"foodPage"} cardapio={restaurant.cardapio} />
           </div>
-        </HomeContainer>
+        </S.HomeContainer>
       </>
     );
   } else {
