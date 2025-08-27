@@ -1,5 +1,5 @@
 export interface DeliveryInfo {
-  fullName: string;
+  receiver: string;
   address: string;
   city: string;
   cep: string;

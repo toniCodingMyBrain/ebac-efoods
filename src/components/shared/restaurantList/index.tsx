@@ -8,11 +8,8 @@ export type RestaurantListProps = {
 };
 
 export const RestaurantList = ({ type }: RestaurantListProps) => {
-  const { data, isLoading, error } = useGetRestaurantsQuery();
+  const { data, isLoading } = useGetRestaurantsQuery();
   const restaurants = data as Restaurant[];
-
-  console.log(error);
-  console.log(data);
 
   if (isLoading) return <h4>Carregando...</h4>;
   if (!data) return <h4>Erro ao carregar os dados...</h4>;
