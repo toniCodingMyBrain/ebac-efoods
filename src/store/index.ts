@@ -6,19 +6,21 @@ import { persistStore, persistReducer } from "redux-persist";
 import storageSession from "redux-persist/lib/storage/session";
 
 const persistConfig = {
-  key: "root",
+  key: "cart",
   storage: storageSession, //* Só persiste até fechar a janela
   whitelist: ["cart"], //* Só o cart será persistido
 };
 
-const rootReducer = combineReducers({ cart: cartReducer, modal: modalReducer });
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedCartReducer = persistReducer(persistConfig, cartReducer);
+
+const rootReducer = combineReducers({
+  [efoodApi.reducerPath]: efoodApi.reducer,
+  modal: modalReducer,
+  cart: persistedCartReducer, //* O cartReducer agora é o persistido
+});
 
 export const store = configureStore({
-  reducer: {
-    [efoodApi.reducerPath]: efoodApi.reducer,
-    persistedReducer,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
