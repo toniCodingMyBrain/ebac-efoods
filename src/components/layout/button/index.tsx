@@ -1,4 +1,4 @@
-import { CardButton } from "./style";
+import * as S from "./style";
 
 export type ButtonProps = {
   type?: string;
@@ -12,9 +12,9 @@ export type ButtonProps = {
 export const Button = ({ typeButton, buttonTitle, to, children, onClick }: ButtonProps) => {
   return (
     <>
-      <CardButton typeButton={typeButton} title={buttonTitle} to={to as string} onClick={onClick}>
+      <S.CardButton typeButton={typeButton} title={buttonTitle} to={to as string} onClick={onClick}>
         {children}
-      </CardButton>
+      </S.CardButton>
     </>
   );
 };

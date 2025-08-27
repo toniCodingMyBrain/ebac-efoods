@@ -1,14 +1,7 @@
 import { CardTag } from "../tag";
-import {
-  CardTitle,
-  CardContainer,
-  CardHeader,
-  CardDescription,
-  CardBody,
-  CardRating,
-} from "./style";
+import * as S from "./style";
 
-import estrela from "../../../public/icons/estrela.png";
+import star from "../../../public/icons/star.png";
 import { Button } from "../../layout/button";
 
 export type FoodCardProps = {
@@ -33,29 +26,29 @@ export const RestaurantCard = ({
   to,
 }: FoodCardProps) => {
   return (
-    <CardContainer type={type}>
-      <CardHeader image={image} type={type}>
+    <S.CardContainer type={type}>
+      <S.CardHeader image={image} type={type}>
         {tag.map((tag) => (
           <CardTag key={tag}>{tag}</CardTag>
         ))}
-      </CardHeader>
-      <CardBody type={type}>
+      </S.CardHeader>
+      <S.CardBody type={type}>
         <div className="info-container">
-          <CardTitle type={type}>
+          <S.CardTitle type={type}>
             <h3>{foodName}</h3>
-            <CardRating>
+            <S.CardRating>
               <h3>{rating}</h3>
-              <img src={estrela} alt="Classificação" />
-            </CardRating>
-          </CardTitle>
-          <CardDescription type={type}>{description}</CardDescription>
+              <img src={star} alt="Classificação" />
+            </S.CardRating>
+          </S.CardTitle>
+          <S.CardDescription type={type}>{description}</S.CardDescription>
         </div>
         <div className="btn-home-card">
           <Button typeButton="primary" to={to} buttonTitle="Saiba mais sobre esta incrível iguaria">
             Saiba mais
           </Button>
         </div>
-      </CardBody>
-    </CardContainer>
+      </S.CardBody>
+    </S.CardContainer>
   );
 };

@@ -1,5 +1,4 @@
-export type PurchasePayload = {
-  products: ProductPurchase[];
+declare type CartFormValues = {
   delivery: {
     receiver: string;
     address: {
@@ -21,13 +20,4 @@ export type PurchasePayload = {
       };
     };
   };
-};
-
-export type ProductPurchase = {
-  id: number;
-  price: number;
-};
-
-export type PurchaseResponse = {
-  orderId: string;
 };

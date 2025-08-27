@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Food } from "../../services/models/restaurants-types";
-import { Address, initialState, Payment } from "../models/states-reducer-types";
+import { initialState } from "../models/state-reducer-type";
 
 const cartSlice = createSlice({
   name: "cart",
@@ -10,6 +9,10 @@ const cartSlice = createSlice({
       const food = state.food.find((food) => food.id === action.payload.id);
       if (!food) {
         state.food.push(action.payload);
+        state.checkoutState.products.push({
+          id: action.payload.id,
+          price: Number(action.payload.preco),
+        });
       } else {
         alert("Esse item já está no carrinho");
       }
@@ -25,13 +28,7 @@ const cartSlice = createSlice({
     },
     //! Reducers de checkout
     setStep: (state, action: PayloadAction<number>) => {
-      state.checkoutState.step = action.payload;
-    },
-    setAddress: (state, action: PayloadAction<Address>) => {
-      state.checkoutState.address = action.payload;
-    },
-    setPayment: (state, action: PayloadAction<Payment>) => {
-      state.checkoutState.payment = action.payload;
+      state.step = action.payload;
     },
     resetCheckout: () => {
       return initialState;
@@ -39,14 +36,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const {
-  addToCart,
-  removeFromCart,
-  openCart,
-  closeCart,
-  setStep,
-  setAddress,
-  setPayment,
-  resetCheckout,
-} = cartSlice.actions;
+export const { addToCart, removeFromCart, openCart, closeCart, setStep, resetCheckout } =
+  cartSlice.actions;
 export default cartSlice.reducer;

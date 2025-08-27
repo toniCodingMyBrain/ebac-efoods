@@ -1,6 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Restaurant } from "./models/restaurants-types";
-import { PurchasePayload, PurchaseResponse } from "./models/purchase-types";
 
 const api = createApi({
   reducerPath: "efoodApi",

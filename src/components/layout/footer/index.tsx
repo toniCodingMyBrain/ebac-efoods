@@ -2,13 +2,13 @@ import logo from "../../../public/assets/logo.png";
 import instagramIcon from "../../../public/icons/instagram.png";
 import facebookIcon from "../../../public/icons/facebook.png";
 import twittericon from "../../../public/icons/twitter.png";
-import { FooterContainer, FooterLinks, FooterText } from "./style";
+import * as S from "./style";
 
 export const Footer = () => (
-  <FooterContainer>
+  <S.FooterContainer>
     <div className="footerContainer">
       <img src={logo} alt="Efood" className="logo" />
-      <FooterLinks>
+      <S.FooterLinks>
         <li>
           <a href="#">
             <img src={instagramIcon} alt="Nosso Instagram" />
@@ -24,11 +24,11 @@ export const Footer = () => (
             <img src={twittericon} alt="Nosso Twitter" />
           </a>
         </li>
-      </FooterLinks>
+      </S.FooterLinks>
     </div>
-    <FooterText>
+    <S.FooterText>
       A efood é uma plataforma para divulgação de estabelecimentos, a responsabilidade pela entrega,
       qualidade dos produtos é toda do estabelecimento contratado.
-    </FooterText>
-  </FooterContainer>
+    </S.FooterText>
+  </S.FooterContainer>
 );

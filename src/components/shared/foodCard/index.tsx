@@ -1,12 +1,5 @@
-import { Food } from "../../../services/models/restaurants-types";
 import { Button } from "../../layout/button";
-import {
-  CardBody,
-  CardContainer,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../../ui/card/style";
+import * as S from "../../ui/card/style";
 import Modal from "../../ui/modal";
 import { useDispatch, useSelector } from "react-redux";
 import { openModal, selectFood } from "../../../store/reducers/modal-reducer";
@@ -19,9 +12,8 @@ type FoodListProps = {
 };
 
 const FoodList = ({ type, cardapio }: FoodListProps) => {
-  // const { openModal, isModalOpen } = useRestaurantsContext();
   const { isOpen: isModalOpen, food: selectedFood } = useSelector(
-    (state: RootReducer) => state.persistedReducer.modal
+    (state: RootReducer) => state.modal
   );
 
   const dispatch = useDispatch();
@@ -35,13 +27,13 @@ const FoodList = ({ type, cardapio }: FoodListProps) => {
     <>
       <List type={type}>
         {cardapio.map((restaurantFood) => (
-          <CardContainer type={type}>
-            <CardHeader type={type} image={restaurantFood.foto}></CardHeader>
-            <CardBody type={type}>
-              <CardTitle type={type}>
+          <S.CardContainer type={type}>
+            <S.CardHeader type={type} image={restaurantFood.foto}></S.CardHeader>
+            <S.CardBody type={type}>
+              <S.CardTitle type={type}>
                 <h3>{restaurantFood.nome}</h3>
-              </CardTitle>
-              <CardDescription type={type}>{restaurantFood.descricao}</CardDescription>
+              </S.CardTitle>
+              <S.CardDescription type={type}>{restaurantFood.descricao}</S.CardDescription>
               <Button
                 typeButton="secondary"
                 buttonTitle="Adicionar ao carrinho"
@@ -49,9 +41,9 @@ const FoodList = ({ type, cardapio }: FoodListProps) => {
               >
                 Adicionar ao carrinho
               </Button>
-            </CardBody>
+            </S.CardBody>
             {isModalOpen && <Modal isOpen={isModalOpen} selectedFood={selectedFood} />}
-          </CardContainer>
+          </S.CardContainer>
         ))}
       </List>
     </>

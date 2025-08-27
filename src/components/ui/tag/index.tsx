@@ -1,11 +1,11 @@
-import { TagContainer, TagText } from "./style";
+import * as S from "./style";
 
 type TagProps = {
   children: string;
 };
 
 export const CardTag = ({ children }: TagProps) => (
-  <TagContainer>
-    <TagText>{children}</TagText>
-  </TagContainer>
+  <S.TagContainer>
+    <S.TagText>{children}</S.TagText>
+  </S.TagContainer>
 );

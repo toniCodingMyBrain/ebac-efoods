@@ -1,12 +1,7 @@
 import * as yup from "yup";
 import { removeSpecialCharacters, validateCEP } from "../utils/validation-utils";
 
-export const deliverySchemaValidation = yup.object().shape({
-  receiver: yup
-    .string()
-    .required("Nome completo é obrigatório.")
-    .min(2, "Nome deve ter pelo menos dois caracteres.")
-    .matches(/^[a-zA-ZÀ-ÿ\s]+$/, "Nome deve conter apenas letras."),
+const addressSchemaValidation = yup.object().shape({
   description: yup
     .string()
     .required("Endereço é obrigatório.")
@@ -15,7 +10,7 @@ export const deliverySchemaValidation = yup.object().shape({
     .string()
     .required("Nome da cidade é obrigatório.")
     .min(3, "Cidade deve conter pelo menos três caracteres."),
-  cep: yup
+  zipCode: yup
     .string()
     .required("O CEP é obrigatório.")
     .test("cep-validation", "CEP deve conter 8 dígitos: 00000-000", validateCEP)
@@ -28,4 +23,13 @@ export const deliverySchemaValidation = yup.object().shape({
       "O número da residência deve conter somente números e opcionalmente uma letra."
     ),
   complement: yup.string().max(100, "O complemento deve conter no máximo cem caracteres."),
+});
+
+export const deliverySchemaValidation = yup.object().shape({
+  receiver: yup
+    .string()
+    .required("Nome completo é obrigatório.")
+    .min(2, "Nome deve ter pelo menos dois caracteres.")
+    .matches(/^[a-zA-ZÀ-ÿ\s]+$/, "Nome deve conter apenas letras."),
+  address: addressSchemaValidation,
 });

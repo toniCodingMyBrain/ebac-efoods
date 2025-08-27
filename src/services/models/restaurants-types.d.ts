@@ -1,4 +1,4 @@
-export interface Food {
+declare interface Food {
   id: number;
   nome: string;
   descricao: string;
@@ -7,7 +7,7 @@ export interface Food {
   porcao: string;
 }
 
-export interface Restaurant {
+declare interface Restaurant {
   id: number;
   titulo: string;
   tipo: string;
