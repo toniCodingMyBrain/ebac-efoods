@@ -117,9 +117,8 @@ const Cart = () => {
       cartForm.values.payment.expiresMonth.trim().length > 0 &&
       cartForm.values.payment.expiresYear.trim().length > 0
     ) {
-      console.log(cartForm.values);
       cartForm.handleSubmit();
-      setStep(4);
+      if (isSuccess) setStep(4);
     }
   };
 
