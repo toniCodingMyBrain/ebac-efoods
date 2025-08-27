@@ -1,26 +1,24 @@
+import React from "react";
 import { useGetRestaurantsQuery } from "../../../services/api";
-import { Restaurant } from "../../../services/models/restaurants-types";
 import { RestaurantCard } from "../../ui/card";
-import { List } from "./style";
+import * as S from "./style";
 
 export type RestaurantListProps = {
   type: "home";
 };
 
 export const RestaurantList = ({ type }: RestaurantListProps) => {
-  const { data, isLoading } = useGetRestaurantsQuery();
-  const restaurants = data as Restaurant[];
+  const { data: restaurants, isLoading } = useGetRestaurantsQuery();
 
   if (isLoading) return <h4>Carregando...</h4>;
-  if (!data) return <h4>Erro ao carregar os dados...</h4>;
+  if (!restaurants) return <h4>Erro ao carregar os dados...</h4>;
 
   return (
     <div>
-      <List type={type}>
+      <S.List type={type}>
         {restaurants.map((restaurant) => (
-          <>
+          <React.Fragment key={restaurant.id}>
             <RestaurantCard
-              key={restaurant.id}
               type={type}
               foodId={restaurant.id}
               foodName={restaurant.titulo}
@@ -31,9 +29,9 @@ export const RestaurantList = ({ type }: RestaurantListProps) => {
               rating={restaurant.avaliacao}
               to={`/${restaurant.tipo.toLowerCase()}`}
             />
-          </>
+          </React.Fragment>
         ))}
-      </List>
+      </S.List>
     </div>
   );
 };
