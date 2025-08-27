@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Restaurant } from "./models/restaurants-types";
-import { PurchasePayload } from "./models/purchase-types";
+import { PurchasePayload, PurchaseResponse } from "./models/purchase-types";
 
 const api = createApi({
   reducerPath: "efoodApi",
@@ -13,7 +13,7 @@ const api = createApi({
       query: () => "restaurantes",
     }),
     //* Enviar produtos para a API de checkout
-    purchase: builder.mutation<any, PurchasePayload>({
+    purchase: builder.mutation<PurchaseResponse, PurchasePayload>({
       query: (body) => ({
         //? A API retorna um id com o nome orderId
         url: "checkout",

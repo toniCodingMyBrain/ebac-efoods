@@ -1,10 +1,5 @@
 export type PurchasePayload = {
-  products: [
-    {
-      id: number;
-      price: number;
-    }
-  ];
+  products: ProductPurchase[];
   delivery: {
     receiver: string;
     address: {
@@ -26,4 +21,13 @@ export type PurchasePayload = {
       };
     };
   };
+};
+
+export type ProductPurchase = {
+  id: number;
+  price: number;
+};
+
+export type PurchaseResponse = {
+  orderId: string;
 };

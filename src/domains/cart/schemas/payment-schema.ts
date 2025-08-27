@@ -25,12 +25,12 @@ export const paymentSchemaValidation = yup.object().shape({
     .required("CVV é obrigatório")
     .test("cvv-valid", "CVV deve ter 3 dígitos", validateCVV)
     .transform(removeSpecialCharacters),
-  expireMonth: yup
+  expiresMonth: yup
     .string()
     .required("Mês de vencimento é obrigatório")
     .matches(/^(0[1-9]|1[0-2])$/, "Mês deve estar entre 01 e 12")
-    .test("expire-month-validation", "Data deve estar correta.", function (value) {
-      const year = parseInt(this.parent.expireYear);
+    .test("expires-month-validation", "Data deve estar correta.", function (value) {
+      const year = parseInt(this.parent.expiresYear);
       const month = parseInt(value);
       const currentYear = getCurrentYear();
       const currentMonth = getCurrentMonth();
@@ -40,11 +40,11 @@ export const paymentSchemaValidation = yup.object().shape({
 
       return false;
     }),
-  expireYear: yup
+  expiresYear: yup
     .string()
     .required("Ano de vencimento é obrigatório")
     .matches(/^\d{4}$/, "Ano deve ter 4 dígitos")
-    .test("expire-year-validation", "Data deve estar correta.", function (value) {
+    .test("expires-year-validation", "Data deve estar correta.", function (value) {
       const year = parseInt(value);
       const currentYear = getCurrentYear();
       return year >= currentYear;
