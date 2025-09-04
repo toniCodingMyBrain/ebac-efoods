@@ -4,12 +4,14 @@ import { GlobalCss } from "./GlobalStyle";
 import PageRoutes from "./routes";
 import { Provider } from "react-redux";
 import { persistor, store } from "./store";
-import Cart from "./domains/cart/components/cart";
+import Cart from "./domain/cart/components/Cart";
 import { PersistGate } from "redux-persist/integration/react";
 
-// Todo 1: impedir prosseguir no formulário se não houver produtos e se não for preenchido.
-// Todo 2: adicionar botão de incluir mais unidades de um produto no carrinho.
-// Todo 3: mandar formulário para API e recuperar o número do pedido.
+// Todo 1: Adicionar estilo de erro na validação no formulário.
+// Todo 2: Adicionar .
+// Todo 3: adicionar botão de incluir mais unidades de um produto diretamente no carrinho.
+// Todo 4: ao clicar em concluir, depois da ordem do pedido, retornar à página inicial e limpar o carrinho.
+// Todo 5: colocar os Loaders, com react-spinners (ver no outro projeto)
 
 function App() {
   return (
