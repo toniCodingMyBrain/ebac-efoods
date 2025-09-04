@@ -17,9 +17,6 @@ const cartSlice = createSlice({
         alert("Esse item já está no carrinho");
       }
     },
-    removeFromCart: (state, action: PayloadAction<number>) => {
-      state.food = state.food.filter((food) => food.id !== action.payload);
-    },
     openCart: (state) => {
       state.isOpen = true;
     },
@@ -27,10 +24,14 @@ const cartSlice = createSlice({
       state.isOpen = false;
     },
     //! Reducers de checkout
+    removeFromCart: (state, action: PayloadAction<number>) => {
+      state.food = state.food.filter((food) => food.id !== action.payload);
+    },
     setStep: (state, action: PayloadAction<number>) => {
       state.step = action.payload;
     },
-    resetCheckout: () => {
+    resetCheckout: (state) => {
+      state.checkoutState.products = [];
       return initialState;
     },
   },
