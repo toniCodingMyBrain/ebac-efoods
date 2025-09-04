@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import { Button } from "../../../../components/layout/button";
 import { priceFormater } from "../../../../utils/priceFormater";
-import * as S from "../cart/style";
+import * as S from "../Cart/style";
 import { RootReducer } from "../../../../store";
 
 type Props = {

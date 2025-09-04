@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { Button } from "../../../../components/layout/button";
-import * as S from "../cart/style";
+import * as S from "../Cart/style";
 
 type Props = {
   cartForm: ReturnType<typeof useFormik<CartFormValues>>;

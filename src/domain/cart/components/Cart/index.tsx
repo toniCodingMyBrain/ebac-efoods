@@ -27,7 +27,7 @@ const Cart = () => {
           description: "",
           city: "",
           zipCode: "",
-          number: 1,
+          number: "",
           complement: "",
         },
       },
@@ -35,10 +35,10 @@ const Cart = () => {
         card: {
           name: "",
           number: "",
-          code: 1,
+          code: "",
           expires: {
-            month: 1,
-            year: 1,
+            month: "",
+            year: "",
           },
         },
       },
@@ -129,7 +129,7 @@ const Cart = () => {
       case 3:
         return <PaymentForm cartForm={cartForm} nextStepCart={nextStepCart} setStep={setStep} />;
       case 4:
-        return data ? <OrderConfirmation orderId={data.orderId} setStep={setStep} /> : null;
+        return data ? <OrderConfirmation orderId={data.orderId} /> : null;
       default:
         return null;
     }
@@ -140,7 +140,14 @@ const Cart = () => {
       <S.CartContainer className={isOpen ? "is-open" : ""}>
         <S.CartSidebar ref={cartRef}>
           <S.FormContainer>
-            <form onSubmit={cartForm.handleSubmit}>{renderStep()}</form>
+            {food.length > 0 ? (
+              <form onSubmit={cartForm.handleSubmit}>{renderStep()}</form>
+            ) : (
+              <div className="empty-cart">
+                <h3>Oops... carrinho vazio</h3>
+                <p>Adicione produtos para comprar ao carrinho.</p>
+              </div>
+            )}
           </S.FormContainer>
         </S.CartSidebar>
       </S.CartContainer>

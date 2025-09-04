@@ -1,12 +1,24 @@
+import { useDispatch } from "react-redux";
 import { Button } from "../../../../components/layout/button";
-import * as S from "../cart/style";
+import * as S from "../Cart/style";
+import { closeCart, resetCheckout } from "../../../../store/reducers/cart-reducer";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   orderId: string;
-  setStep: (step: number) => void;
 };
 
-export const OrderConfirmation = ({ orderId, setStep }: Props) => {
+export const OrderConfirmation = ({ orderId }: Props) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleAfterConcludePurchaseClick = () => {
+    dispatch(resetCheckout());
+    dispatch(closeCart());
+    //! é preciso colocar o replace por algum motivo, ele simplesmente substitui a rota.
+    navigate("/", { replace: true });
+  };
+
   return (
     <S.FinishedOrder>
       <h4>Pedido realizado - {orderId}</h4>
@@ -27,7 +39,12 @@ export const OrderConfirmation = ({ orderId, setStep }: Props) => {
           Esperamos que desfrute de uma deliciosa e agradável experiência gastronômica. Bom apetite!
         </p>
       </div>
-      <Button typeButton="secondary" buttonTitle="Concluir compra" onClick={() => setStep(1)}>
+      <Button
+        typeButton="secondary"
+        buttonTitle="Concluir compra"
+        onClick={handleAfterConcludePurchaseClick}
+        to="/"
+      >
         Concluir
       </Button>
     </S.FinishedOrder>

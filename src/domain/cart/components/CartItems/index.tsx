@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../../../components/layout/button";
 import { priceFormater } from "../../../../utils/priceFormater";
 import { removeFromCart } from "../../../../store/reducers/cart-reducer";
-import * as S from "../cart/style";
+import * as S from "../Cart/style";
 import { RootReducer } from "../../../../store";
 
 type Props = {

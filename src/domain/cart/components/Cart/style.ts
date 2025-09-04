@@ -127,6 +127,12 @@ export const FormContainer = styled.div`
     gap: 8px;
     margin-top: 24px;
   }
+
+  .empty-cart {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 `;
 
 export const RowBlock = styled.div<FormProps>`
