@@ -1,28 +1,24 @@
 import { useFormik } from "formik";
 import { useSelector } from "react-redux";
 import { Button } from "../../../../components/layout/button";
-import { priceFormater } from "../../../../utils/priceFormater";
+import { priceFormatter } from "../../../../utils/priceFormatter";
 import * as S from "../Cart/style";
 import { RootReducer } from "../../../../store";
+import { getTotalPrice } from "../../../../utils/get-total-price";
 
 type Props = {
   cartForm: ReturnType<typeof useFormik<CartFormValues>>;
   nextStepCart: () => void;
   setStep: (step: number) => void;
+  checkInputHasError: (fieldName: string) => boolean;
 };
 
-export const PaymentForm = ({ cartForm, nextStepCart, setStep }: Props) => {
+export const PaymentForm = ({ cartForm, nextStepCart, setStep, checkInputHasError }: Props) => {
   const { food } = useSelector((state: RootReducer) => state.cart);
-
-  const getTotalPrice = () => {
-    return food.reduce((acumulator, nextPrice) => {
-      return (acumulator += Number(nextPrice.preco));
-    }, 0);
-  };
 
   return (
     <>
-      <h4>Pagamento - {priceFormater(getTotalPrice())}</h4>
+      <h4>Pagamento - {priceFormatter(getTotalPrice(food))}</h4>
       <div>
         <S.RowBlock>
           <label htmlFor="name">Nome no cartão</label>
@@ -33,6 +29,7 @@ export const PaymentForm = ({ cartForm, nextStepCart, setStep }: Props) => {
             value={cartForm.values.payment.card.name}
             onChange={cartForm.handleChange}
             onBlur={cartForm.handleBlur}
+            className={checkInputHasError("payment.card.name") ? "error" : ""}
           />
         </S.RowBlock>
         <S.RowBlock inputRowType="grid">
@@ -45,6 +42,7 @@ export const PaymentForm = ({ cartForm, nextStepCart, setStep }: Props) => {
               value={cartForm.values.payment.card.number}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
+              className={checkInputHasError("payment.card.number") ? "error" : ""}
             />
           </div>
           <div>
@@ -56,6 +54,7 @@ export const PaymentForm = ({ cartForm, nextStepCart, setStep }: Props) => {
               value={cartForm.values.payment.card.code}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
+              className={checkInputHasError("payment.card.code") ? "error" : ""}
             />
           </div>
         </S.RowBlock>
@@ -69,6 +68,7 @@ export const PaymentForm = ({ cartForm, nextStepCart, setStep }: Props) => {
               value={cartForm.values.payment.card.expires.month}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
+              className={checkInputHasError("payment.card.expires.month") ? "error" : ""}
             />
           </div>
           <div>
@@ -80,6 +80,7 @@ export const PaymentForm = ({ cartForm, nextStepCart, setStep }: Props) => {
               value={cartForm.values.payment.card.expires.year}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
+              className={checkInputHasError("payment.card.expires.year") ? "error" : ""}
             />
           </div>
         </S.RowBlock>

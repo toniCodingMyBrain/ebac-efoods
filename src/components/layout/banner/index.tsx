@@ -46,7 +46,7 @@ export const HomeBanner = ({
             <a href="/" className="logo">
               <img src={logo} alt="Efood" />
             </a>
-            <S.BannerText typeBanner={typeBanner} onClick={handleClick}>
+            <S.BannerText role="button" typeBanner={typeBanner} onClick={handleClick}>
               {food.length > 1
                 ? `${food.length} produtos no carrinho`
                 : food.length == 0

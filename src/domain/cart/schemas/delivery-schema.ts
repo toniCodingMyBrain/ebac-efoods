@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { removeSpecialCharacters, validateCEP } from "../utils/validation-utils";
+import { removeSpecialCharacters, validateCEP } from "../../../utils/validation-utils";
 
 const addressSchemaValidation = yup.object().shape({
   description: yup

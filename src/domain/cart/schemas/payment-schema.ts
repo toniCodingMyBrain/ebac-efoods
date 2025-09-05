@@ -5,7 +5,7 @@ import {
   removeSpecialCharacters,
   validateCardNumber,
   validateCVV,
-} from "../utils/validation-utils";
+} from "../../../utils/validation-utils";
 
 const expiresSchema = yup.object().shape({
   month: yup

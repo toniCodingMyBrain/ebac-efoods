@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../../../components/layout/button";
-import { priceFormater } from "../../../../utils/priceFormater";
+import { priceFormatter } from "../../../../utils/priceFormatter";
 import { removeFromCart } from "../../../../store/reducers/cart-reducer";
 import * as S from "../Cart/style";
 import { RootReducer } from "../../../../store";
+import { getTotalPrice } from "../../../../utils/get-total-price";
 
 type Props = {
   nextStepCart: () => void;
@@ -17,12 +18,6 @@ export const CartItemsComponent = ({ nextStepCart }: Props) => {
     dispatch(removeFromCart(id));
   };
 
-  const getTotalPrice = () => {
-    return food.reduce((acumulator, nextPrice) => {
-      return (acumulator += Number(nextPrice.preco));
-    }, 0);
-  };
-
   return (
     <>
       <ul>
@@ -31,7 +26,7 @@ export const CartItemsComponent = ({ nextStepCart }: Props) => {
             <img src={item.foto} alt={item.descricao} />
             <div>
               <h4>{item.nome}</h4>
-              <p>{priceFormater(item.preco)}</p>
+              <p>{priceFormatter(item.preco)}</p>
             </div>
             <button type="button" onClick={() => handleRemoveItem(item.id)} />
           </S.CartItem>
@@ -39,7 +34,7 @@ export const CartItemsComponent = ({ nextStepCart }: Props) => {
       </ul>
       <S.BuyInfos>
         <h4>Valor Total</h4>
-        <h4>{priceFormater(getTotalPrice())}</h4>
+        <h4>{priceFormatter(getTotalPrice(food))}</h4>
       </S.BuyInfos>
       <Button typeButton="secondary" buttonTitle="Prosseguir para comprar" onClick={nextStepCart}>
         Comprar

@@ -4,7 +4,7 @@ import * as S from "./style";
 import { RootReducer } from "../../../../store";
 import { closeCart } from "../../../../store/reducers/cart-reducer";
 import { useEffect, useRef, useState } from "react";
-import { useFormik } from "formik";
+import { FormikProvider, useFormik } from "formik";
 import * as yup from "yup";
 import { usePurchaseMutation } from "../../../../services/api";
 import { CartItemsComponent } from "../CartItems";
@@ -77,6 +77,19 @@ const Cart = () => {
       }),
   });
 
+  const checkInputHasError = (fieldName: string) => {
+    const meta = cartForm.getFieldMeta(fieldName);
+    /*  
+    * fica como: 
+    !-> meta.touched: boolean | undefined
+    !-> meta.error: string | undefined (nesse caso fica melhor definir manualmente) 
+    */
+    if (meta.error != undefined) {
+      return meta.touched && true;
+    }
+    return meta.touched && false;
+  };
+
   const [step, setStep] = useState(1);
 
   const nextStepCart = async () => {
@@ -125,9 +138,23 @@ const Cart = () => {
       case 1:
         return <CartItemsComponent nextStepCart={nextStepCart} />;
       case 2:
-        return <DeliveryForm cartForm={cartForm} nextStepCart={nextStepCart} setStep={setStep} />;
+        return (
+          <DeliveryForm
+            cartForm={cartForm}
+            nextStepCart={nextStepCart}
+            setStep={setStep}
+            checkInputHasError={checkInputHasError}
+          />
+        );
       case 3:
-        return <PaymentForm cartForm={cartForm} nextStepCart={nextStepCart} setStep={setStep} />;
+        return (
+          <PaymentForm
+            cartForm={cartForm}
+            nextStepCart={nextStepCart}
+            setStep={setStep}
+            checkInputHasError={checkInputHasError}
+          />
+        );
       case 4:
         return data ? <OrderConfirmation orderId={data.orderId} /> : null;
       default:
@@ -141,7 +168,9 @@ const Cart = () => {
         <S.CartSidebar ref={cartRef}>
           <S.FormContainer>
             {food.length > 0 ? (
-              <form onSubmit={cartForm.handleSubmit}>{renderStep()}</form>
+              <FormikProvider value={cartForm}>
+                <form onSubmit={cartForm.handleSubmit}>{renderStep()}</form>
+              </FormikProvider>
             ) : (
               <div className="empty-cart">
                 <h3>Oops... carrinho vazio</h3>

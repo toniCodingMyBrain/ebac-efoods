@@ -4,7 +4,7 @@ import { CloseButton, ModalContainer, ModalCard, ModalLayout } from "./style";
 import close from "../../../public/icons/close.png";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../../store/reducers/modal-reducer";
-import { priceFormater } from "../../../utils/priceFormater";
+import { priceFormatter } from "../../../utils/priceFormatter";
 import { addToCart, openCart } from "../../../store/reducers/cart-reducer";
 
 type ModalProps = {
@@ -54,7 +54,7 @@ export default function Modal({ selectedFood }: ModalProps) {
                     buttonTitle="Adicionar ao carrinho"
                     onClick={() => handleAddToCart(selectedFood)}
                   >
-                    {`Adicionar ao carrinho - ${priceFormater(selectedFood.preco)}`}
+                    {`Adicionar ao carrinho - ${priceFormatter(selectedFood.preco)}`}
                   </Button>
                 </div>
               </ModalLayout>

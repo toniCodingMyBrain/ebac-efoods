@@ -6,9 +6,10 @@ type Props = {
   cartForm: ReturnType<typeof useFormik<CartFormValues>>;
   nextStepCart: () => void;
   setStep: (step: number) => void;
+  checkInputHasError: (fieldName: string) => boolean;
 };
 
-export const DeliveryForm = ({ cartForm, nextStepCart, setStep }: Props) => {
+export const DeliveryForm = ({ cartForm, nextStepCart, setStep, checkInputHasError }: Props) => {
   return (
     <>
       <h4>Entrega</h4>
@@ -22,6 +23,7 @@ export const DeliveryForm = ({ cartForm, nextStepCart, setStep }: Props) => {
             value={cartForm.values.delivery.receiver}
             onChange={cartForm.handleChange}
             onBlur={cartForm.handleBlur}
+            className={checkInputHasError("delivery.receiver") ? "error" : ""}
           />
         </S.RowBlock>
         <S.RowBlock>
@@ -33,6 +35,7 @@ export const DeliveryForm = ({ cartForm, nextStepCart, setStep }: Props) => {
             value={cartForm.values.delivery.address.description}
             onChange={cartForm.handleChange}
             onBlur={cartForm.handleBlur}
+            className={checkInputHasError("delivery.address.description") ? "error" : ""}
           />
         </S.RowBlock>
         <S.RowBlock>
@@ -44,6 +47,7 @@ export const DeliveryForm = ({ cartForm, nextStepCart, setStep }: Props) => {
             value={cartForm.values.delivery.address.city}
             onChange={cartForm.handleChange}
             onBlur={cartForm.handleBlur}
+            className={checkInputHasError("delivery.address.city") ? "error" : ""}
           />
         </S.RowBlock>
         <S.RowBlock inputRowType="double">
@@ -56,6 +60,7 @@ export const DeliveryForm = ({ cartForm, nextStepCart, setStep }: Props) => {
               value={cartForm.values.delivery.address.zipCode}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
+              className={checkInputHasError("delivery.address.zipCode") ? "error" : ""}
             />
           </div>
           <div>
@@ -67,6 +72,7 @@ export const DeliveryForm = ({ cartForm, nextStepCart, setStep }: Props) => {
               value={cartForm.values.delivery.address.number}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
+              className={checkInputHasError("delivery.address.number") ? "error" : ""}
             />
           </div>
         </S.RowBlock>
@@ -79,6 +85,7 @@ export const DeliveryForm = ({ cartForm, nextStepCart, setStep }: Props) => {
             value={cartForm.values.delivery.address.complement}
             onChange={cartForm.handleChange}
             onBlur={cartForm.handleBlur}
+            className={checkInputHasError("delivery.address.complement") ? "error" : ""}
           />
         </S.RowBlock>
       </div>

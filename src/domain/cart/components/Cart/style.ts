@@ -149,14 +149,17 @@ export const RowBlock = styled.div<FormProps>`
     font-size: 14px;
     color: #4b4b4b;
     outline: none;
-    border: 3px solid ${colors.rose};
+    border: 2px solid ${colors.rose};
     border-radius: 2px;
     padding: 6px 0 6px 0;
-
     width: 100%;
 
     &:focus {
       border-color: ${colors.beige};
+    }
+
+    &.error {
+      border: 2.5px dashed red;
     }
   }
 
