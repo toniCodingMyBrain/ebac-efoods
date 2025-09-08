@@ -9,11 +9,16 @@ import { getTotalPrice } from "../../../../utils/get-total-price";
 type Props = {
   cartForm: ReturnType<typeof useFormik<CartFormValues>>;
   nextStepCart: () => void;
-  setStep: (step: number) => void;
+  handleReturnClick: () => void;
   checkInputHasError: (fieldName: string) => boolean;
 };
 
-export const PaymentForm = ({ cartForm, nextStepCart, setStep, checkInputHasError }: Props) => {
+export const PaymentForm = ({
+  cartForm,
+  nextStepCart,
+  checkInputHasError,
+  handleReturnClick,
+}: Props) => {
   const { food } = useSelector((state: RootReducer) => state.cart);
 
   return (
@@ -97,7 +102,7 @@ export const PaymentForm = ({ cartForm, nextStepCart, setStep, checkInputHasErro
         <Button
           typeButton="secondary"
           buttonTitle="retornar ao carrinho"
-          onClick={() => setStep(1)}
+          onClick={handleReturnClick}
         >
           Retornar
         </Button>

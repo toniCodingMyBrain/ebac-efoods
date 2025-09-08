@@ -5,11 +5,16 @@ import * as S from "../Cart/style";
 type Props = {
   cartForm: ReturnType<typeof useFormik<CartFormValues>>;
   nextStepCart: () => void;
-  setStep: (step: number) => void;
+  handleReturnClick: () => void;
   checkInputHasError: (fieldName: string) => boolean;
 };
 
-export const DeliveryForm = ({ cartForm, nextStepCart, setStep, checkInputHasError }: Props) => {
+export const DeliveryForm = ({
+  cartForm,
+  nextStepCart,
+  checkInputHasError,
+  handleReturnClick,
+}: Props) => {
   return (
     <>
       <h4>Entrega</h4>
@@ -100,7 +105,7 @@ export const DeliveryForm = ({ cartForm, nextStepCart, setStep, checkInputHasErr
         <Button
           typeButton="secondary"
           buttonTitle="retornar ao carrinho"
-          onClick={() => setStep(1)}
+          onClick={handleReturnClick}
         >
           Retornar
         </Button>

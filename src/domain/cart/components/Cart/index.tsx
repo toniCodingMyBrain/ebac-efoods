@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import * as S from "./style";
 import { RootReducer } from "../../../../store";
-import { closeCart } from "../../../../store/reducers/cart-reducer";
+import { closeCart, resetCheckout } from "../../../../store/reducers/cart-reducer";
 import { useEffect, useRef, useState } from "react";
 import { FormikProvider, useFormik } from "formik";
 import * as yup from "yup";
@@ -76,7 +76,7 @@ const Cart = () => {
         },
       }),
   });
-
+  console.log(food);
   const checkInputHasError = (fieldName: string) => {
     const meta = cartForm.getFieldMeta(fieldName);
     /*  
@@ -109,12 +109,18 @@ const Cart = () => {
     }
   };
 
+  const handleReturnClick = () => {
+    setStep(1);
+    dispatch(resetCheckout());
+  };
+
   const cartRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     function handleOutsideClick(event: MouseEvent) {
       if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
         dispatch(closeCart());
+        setStep(1);
       }
     }
 
@@ -142,7 +148,7 @@ const Cart = () => {
           <DeliveryForm
             cartForm={cartForm}
             nextStepCart={nextStepCart}
-            setStep={setStep}
+            handleReturnClick={handleReturnClick}
             checkInputHasError={checkInputHasError}
           />
         );
@@ -151,7 +157,7 @@ const Cart = () => {
           <PaymentForm
             cartForm={cartForm}
             nextStepCart={nextStepCart}
-            setStep={setStep}
+            handleReturnClick={handleReturnClick}
             checkInputHasError={checkInputHasError}
           />
         );
