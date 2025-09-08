@@ -66,7 +66,7 @@ export const DeliveryForm = ({
               value={cartForm.values.delivery.address.zipCode}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
-              mask={"99999-999"}
+              mask="99999-999"
               className={checkInputHasError("delivery.address.zipCode") ? "error" : ""}
             />
           </div>

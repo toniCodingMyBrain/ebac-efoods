@@ -48,8 +48,8 @@ export const PaymentForm = ({
               value={cartForm.values.payment.card.number}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
-              mask={"9999-9999-9999-9999"}
               className={checkInputHasError("payment.card.number") ? "error" : ""}
+              mask="9999-9999-9999-9999"
             />
           </div>
           <div>
@@ -61,8 +61,8 @@ export const PaymentForm = ({
               value={cartForm.values.payment.card.code}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
-              mask={"999"}
               className={checkInputHasError("payment.card.code") ? "error" : ""}
+              mask="999"
             />
           </div>
         </S.RowBlock>
@@ -76,8 +76,8 @@ export const PaymentForm = ({
               value={cartForm.values.payment.card.expires.month}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
-              mask={"99"}
               className={checkInputHasError("payment.card.expires.month") ? "error" : ""}
+              mask="99"
             />
           </div>
           <div>
@@ -89,8 +89,8 @@ export const PaymentForm = ({
               value={cartForm.values.payment.card.expires.year}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
-              mask={"9999"}
               className={checkInputHasError("payment.card.expires.year") ? "error" : ""}
+              mask="9999"
             />
           </div>
         </S.RowBlock>

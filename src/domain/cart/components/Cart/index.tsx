@@ -76,7 +76,7 @@ const Cart = () => {
         },
       }),
   });
-  console.log(food);
+
   const checkInputHasError = (fieldName: string) => {
     const meta = cartForm.getFieldMeta(fieldName);
     /*  
