@@ -5,6 +5,7 @@ import { priceFormatter } from "../../../../utils/priceFormatter";
 import * as S from "../Cart/style";
 import { RootReducer } from "../../../../store";
 import { getTotalPrice } from "../../../../utils/get-total-price";
+import InputMask from "react-input-mask";
 
 type Props = {
   cartForm: ReturnType<typeof useFormik<CartFormValues>>;
@@ -40,25 +41,27 @@ export const PaymentForm = ({
         <S.RowBlock inputRowType="grid">
           <div>
             <label htmlFor="number">Número do cartão</label>
-            <input
+            <InputMask
               id="number"
               type="text"
               name="payment.card.number"
               value={cartForm.values.payment.card.number}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
+              mask={"9999-9999-9999-9999"}
               className={checkInputHasError("payment.card.number") ? "error" : ""}
             />
           </div>
           <div>
             <label htmlFor="code">CVV</label>
-            <input
+            <InputMask
               id="code"
               type="text"
               name="payment.card.code"
               value={cartForm.values.payment.card.code}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
+              mask={"999"}
               className={checkInputHasError("payment.card.code") ? "error" : ""}
             />
           </div>
@@ -66,25 +69,27 @@ export const PaymentForm = ({
         <S.RowBlock inputRowType="double">
           <div>
             <label htmlFor="month">Mês de vencimento</label>
-            <input
+            <InputMask
               id="month"
               type="text"
               name="payment.card.expires.month"
               value={cartForm.values.payment.card.expires.month}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
+              mask={"99"}
               className={checkInputHasError("payment.card.expires.month") ? "error" : ""}
             />
           </div>
           <div>
             <label htmlFor="year">Ano de vencimento</label>
-            <input
+            <InputMask
               id="year"
               type="text"
               name="payment.card.expires.year"
               value={cartForm.values.payment.card.expires.year}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
+              mask={"9999"}
               className={checkInputHasError("payment.card.expires.year") ? "error" : ""}
             />
           </div>

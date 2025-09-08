@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import { Button } from "../../../../components/layout/button";
 import * as S from "../Cart/style";
+import InputMask from "react-input-mask";
 
 type Props = {
   cartForm: ReturnType<typeof useFormik<CartFormValues>>;
@@ -58,13 +59,14 @@ export const DeliveryForm = ({
         <S.RowBlock inputRowType="double">
           <div>
             <label htmlFor="cep">CEP</label>
-            <input
+            <InputMask
               id="cep"
               type="text"
               name="delivery.address.zipCode"
               value={cartForm.values.delivery.address.zipCode}
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
+              mask={"99999-999"}
               className={checkInputHasError("delivery.address.zipCode") ? "error" : ""}
             />
           </div>
