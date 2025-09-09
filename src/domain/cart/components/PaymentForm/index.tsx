@@ -5,7 +5,8 @@ import { priceFormatter } from "../../../../utils/priceFormatter";
 import * as S from "../Cart/style";
 import { RootReducer } from "../../../../store";
 import { getTotalPrice } from "../../../../utils/get-total-price";
-import InputMask from "react-input-mask";
+import { ChangeEvent, useState } from "react";
+import { handleCardNumberMask } from "../../../../utils/card-number-mask";
 
 type Props = {
   cartForm: ReturnType<typeof useFormik<CartFormValues>>;
@@ -21,6 +22,14 @@ export const PaymentForm = ({
   handleReturnClick,
 }: Props) => {
   const { food } = useSelector((state: RootReducer) => state.cart);
+
+  const [cardNumberValue, setCardNumberValue] = useState("");
+  const [rawCardNumberValue, setRawCardNumberValue] = useState("");
+
+  const handleCardNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
+    cartForm.handleChange(rawCardNumberValue);
+    handleCardNumberMask(event, setCardNumberValue, setRawCardNumberValue);
+  };
 
   return (
     <>
@@ -41,20 +50,19 @@ export const PaymentForm = ({
         <S.RowBlock inputRowType="grid">
           <div>
             <label htmlFor="number">Número do cartão</label>
-            <InputMask
+            <input
               id="number"
               type="text"
               name="payment.card.number"
-              value={cartForm.values.payment.card.number}
-              onChange={cartForm.handleChange}
+              value={cardNumberValue}
+              onChange={handleCardNumberChange}
               onBlur={cartForm.handleBlur}
               className={checkInputHasError("payment.card.number") ? "error" : ""}
-              mask="9999-9999-9999-9999"
             />
           </div>
           <div>
             <label htmlFor="code">CVV</label>
-            <InputMask
+            <input
               id="code"
               type="text"
               name="payment.card.code"
@@ -62,14 +70,13 @@ export const PaymentForm = ({
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
               className={checkInputHasError("payment.card.code") ? "error" : ""}
-              mask="999"
             />
           </div>
         </S.RowBlock>
         <S.RowBlock inputRowType="double">
           <div>
             <label htmlFor="month">Mês de vencimento</label>
-            <InputMask
+            <input
               id="month"
               type="text"
               name="payment.card.expires.month"
@@ -77,12 +84,11 @@ export const PaymentForm = ({
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
               className={checkInputHasError("payment.card.expires.month") ? "error" : ""}
-              mask="99"
             />
           </div>
           <div>
             <label htmlFor="year">Ano de vencimento</label>
-            <InputMask
+            <input
               id="year"
               type="text"
               name="payment.card.expires.year"
@@ -90,7 +96,6 @@ export const PaymentForm = ({
               onChange={cartForm.handleChange}
               onBlur={cartForm.handleBlur}
               className={checkInputHasError("payment.card.expires.year") ? "error" : ""}
-              mask="9999"
             />
           </div>
         </S.RowBlock>

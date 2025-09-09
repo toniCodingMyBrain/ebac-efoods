@@ -1,9 +1,10 @@
 import { useFormik } from "formik";
 import { Button } from "../../../../components/layout/button";
 import * as S from "../Cart/style";
-import InputMask from "react-input-mask";
+import { ChangeEvent, useState } from "react";
+import { handleCEPChangeMask } from "../../../../utils/cep-mask";
 
-type Props = {
+type DeliveryProps = {
   cartForm: ReturnType<typeof useFormik<CartFormValues>>;
   nextStepCart: () => void;
   handleReturnClick: () => void;
@@ -15,7 +16,16 @@ export const DeliveryForm = ({
   nextStepCart,
   checkInputHasError,
   handleReturnClick,
-}: Props) => {
+}: DeliveryProps) => {
+  const [cep, setCep] = useState("");
+  const [rawCep, setRawCep] = useState("");
+
+  const handleCEPChange = (event: ChangeEvent<HTMLInputElement>) => {
+    cartForm.handleChange(rawCep);
+    cartForm.setFieldValue("delivery.address.zipCode", rawCep);
+    handleCEPChangeMask(event, setCep, setRawCep);
+  };
+
   return (
     <>
       <h4>Entrega</h4>
@@ -59,14 +69,13 @@ export const DeliveryForm = ({
         <S.RowBlock inputRowType="double">
           <div>
             <label htmlFor="cep">CEP</label>
-            <InputMask
+            <input
               id="cep"
               type="text"
               name="delivery.address.zipCode"
-              value={cartForm.values.delivery.address.zipCode}
-              onChange={cartForm.handleChange}
+              value={cep}
+              onChange={handleCEPChange}
               onBlur={cartForm.handleBlur}
-              mask="99999-999"
               className={checkInputHasError("delivery.address.zipCode") ? "error" : ""}
             />
           </div>
