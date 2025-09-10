@@ -18,12 +18,12 @@ export const DeliveryForm = ({
   handleReturnClick,
 }: DeliveryProps) => {
   const [cep, setCep] = useState("");
-  const [rawCep, setRawCep] = useState("");
 
   const handleCEPChange = (event: ChangeEvent<HTMLInputElement>) => {
-    cartForm.handleChange(rawCep);
-    cartForm.setFieldValue("delivery.address.zipCode", rawCep);
-    handleCEPChangeMask(event, setCep, setRawCep);
+    const { value } = event.target;
+    const { maskedValue, cleanValue } = handleCEPChangeMask(value);
+    cartForm.setFieldValue("delivery.address.zipCode", cleanValue);
+    setCep(maskedValue);
   };
 
   return (
@@ -73,6 +73,7 @@ export const DeliveryForm = ({
               id="cep"
               type="text"
               name="delivery.address.zipCode"
+              placeholder="000.000.000-00"
               value={cep}
               onChange={handleCEPChange}
               onBlur={cartForm.handleBlur}

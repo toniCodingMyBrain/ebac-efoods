@@ -7,7 +7,6 @@ import { persistor, store } from "./store";
 import Cart from "./domain/cart/components/Cart";
 import { PersistGate } from "redux-persist/integration/react";
 
-// Todo 2: Adicionar a máscara de react-input-mask. (Em andamento: com erro!!!)
 // Todo 5: colocar os Loaders, com react-spinners (ver no outro projeto)
 
 function App() {

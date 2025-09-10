@@ -7,6 +7,8 @@ import { RootReducer } from "../../../../store";
 import { getTotalPrice } from "../../../../utils/get-total-price";
 import { ChangeEvent, useState } from "react";
 import { handleCardNumberMask } from "../../../../utils/card-number-mask";
+import { handleCardCodeMask } from "../../../../utils/card-code-mask";
+import { handleCardExpiresMask } from "../../../../utils/card-expires-mask";
 
 type Props = {
   cartForm: ReturnType<typeof useFormik<CartFormValues>>;
@@ -24,11 +26,36 @@ export const PaymentForm = ({
   const { food } = useSelector((state: RootReducer) => state.cart);
 
   const [cardNumberValue, setCardNumberValue] = useState("");
-  const [rawCardNumberValue, setRawCardNumberValue] = useState("");
+  const [cardCodeValue, setCardCodeValue] = useState("");
+  const [cardExpiresMonthValue, setCardExpiresMonthValue] = useState("");
+  const [cardExpiresYearValue, setCardExpiresYearValue] = useState("");
 
   const handleCardNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
-    cartForm.handleChange(rawCardNumberValue);
-    handleCardNumberMask(event, setCardNumberValue, setRawCardNumberValue);
+    const { value } = event.target;
+    const { cleanValue, maskedValue } = handleCardNumberMask(value);
+    cartForm.setFieldValue("payment.card.number", cleanValue);
+    setCardNumberValue(maskedValue);
+  };
+
+  const handleCardCodeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    const { cleanValue, maskedValue } = handleCardCodeMask(value);
+    cartForm.setFieldValue("payment.card.code", cleanValue);
+    setCardCodeValue(maskedValue);
+  };
+
+  const handleCardExpiresMonthChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    const { cleanValue, maskedValue } = handleCardExpiresMask(value, 2);
+    cartForm.setFieldValue("payment.card.expires.month", cleanValue);
+    setCardExpiresMonthValue(maskedValue);
+  };
+
+  const handleCardExpiresYearChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    const { cleanValue, maskedValue } = handleCardExpiresMask(value, 4);
+    cartForm.setFieldValue("payment.card.expires.year", cleanValue);
+    setCardExpiresYearValue(maskedValue);
   };
 
   return (
@@ -54,6 +81,7 @@ export const PaymentForm = ({
               id="number"
               type="text"
               name="payment.card.number"
+              placeholder="0000 0000 0000 0000"
               value={cardNumberValue}
               onChange={handleCardNumberChange}
               onBlur={cartForm.handleBlur}
@@ -66,8 +94,9 @@ export const PaymentForm = ({
               id="code"
               type="text"
               name="payment.card.code"
-              value={cartForm.values.payment.card.code}
-              onChange={cartForm.handleChange}
+              placeholder="000"
+              value={cardCodeValue}
+              onChange={handleCardCodeChange}
               onBlur={cartForm.handleBlur}
               className={checkInputHasError("payment.card.code") ? "error" : ""}
             />
@@ -80,8 +109,9 @@ export const PaymentForm = ({
               id="month"
               type="text"
               name="payment.card.expires.month"
-              value={cartForm.values.payment.card.expires.month}
-              onChange={cartForm.handleChange}
+              placeholder="00"
+              value={cardExpiresMonthValue}
+              onChange={handleCardExpiresMonthChange}
               onBlur={cartForm.handleBlur}
               className={checkInputHasError("payment.card.expires.month") ? "error" : ""}
             />
@@ -92,8 +122,9 @@ export const PaymentForm = ({
               id="year"
               type="text"
               name="payment.card.expires.year"
-              value={cartForm.values.payment.card.expires.year}
-              onChange={cartForm.handleChange}
+              placeholder="2025"
+              value={cardExpiresYearValue}
+              onChange={handleCardExpiresYearChange}
               onBlur={cartForm.handleBlur}
               className={checkInputHasError("payment.card.expires.year") ? "error" : ""}
             />

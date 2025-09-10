@@ -161,6 +161,10 @@ export const RowBlock = styled.div<FormProps>`
     &.error {
       border: 2.5px dashed red;
     }
+
+    &::placeholder {
+      color: #ccc;
+    }
   }
 
   ${(formProps) =>

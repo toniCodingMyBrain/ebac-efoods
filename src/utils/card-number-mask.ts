@@ -1,19 +1,8 @@
-import { ChangeEvent } from "react";
-
-type Setter<T> = React.Dispatch<React.SetStateAction<T>>;
-
-export const handleCardNumberMask = (
-  event: ChangeEvent<HTMLInputElement>,
-  setCardNumber: Setter<string>,
-  setRawCardNumber: Setter<string>
-) => {
-  const value = event.target.value;
-
-  const cleanValue = value.replace(/\D/g, "");
+export const handleCardNumberMask = (value: string) => {
+  const cleanValue = value.replace(/\D/g, "").slice(0, 16);
 
   let maskedValue = cleanValue;
   maskedValue = cleanValue.match(/.{1,4}/g)?.join(" ") || "";
 
-  setCardNumber(maskedValue);
-  setRawCardNumber(cleanValue);
+  return { maskedValue, cleanValue };
 };

@@ -28,7 +28,7 @@ const Cart = () => {
           city: "",
           zipCode: "",
           number: "",
-          complement: "",
+          complement: "Residência",
         },
       },
       payment: {
