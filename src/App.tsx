@@ -6,13 +6,12 @@ import { Provider } from "react-redux";
 import { persistor, store } from "./store";
 import Cart from "./domain/cart/components/Cart";
 import { PersistGate } from "redux-persist/integration/react";
-
-// Todo 5: colocar os Loaders, com react-spinners (ver no outro projeto)
+import { BarLoader } from "react-spinners";
 
 function App() {
   return (
     <Provider store={store}>
-      <PersistGate loading={<h4>Carregando...</h4>} persistor={persistor}>
+      <PersistGate loading={<BarLoader height={10} color="#E66767" />} persistor={persistor}>
         <BrowserRouter>
           <GlobalCss />
           <PageRoutes />

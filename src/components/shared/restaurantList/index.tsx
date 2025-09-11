@@ -2,6 +2,8 @@ import React from "react";
 import { useGetRestaurantsQuery } from "../../../services/api";
 import { RestaurantCard } from "../../ui/card";
 import * as S from "./style";
+import { HomeContainer } from "./../../../pages/home/style";
+import { BarLoader } from "react-spinners";
 
 export type RestaurantListProps = {
   type: "home";
@@ -10,8 +12,23 @@ export type RestaurantListProps = {
 export const RestaurantList = ({ type }: RestaurantListProps) => {
   const { data: restaurants, isLoading } = useGetRestaurantsQuery();
 
-  if (isLoading) return <h4>Carregando...</h4>;
-  if (!restaurants) return <h4>Erro ao carregar os dados...</h4>;
+  if (isLoading)
+    return (
+      <HomeContainer>
+        <div className="loader">
+          <BarLoader height={10} color="#E66767" />
+        </div>
+      </HomeContainer>
+    );
+
+  if (!restaurants)
+    return (
+      <HomeContainer>
+        <div className="loader">
+          <h4>Oops... estamos com problemas técnicos!</h4>
+        </div>
+      </HomeContainer>
+    );
 
   return (
     <div>

@@ -3,12 +3,22 @@ import { HomeBanner } from "../../components/layout/banner";
 import FoodList from "../../components/shared/foodCard";
 import { useParams } from "react-router-dom";
 import { useGetRestaurantsQuery } from "../../services/api";
+import { BarLoader } from "react-spinners";
 
 export const FoodPage = () => {
   const { tipo } = useParams();
 
   const { data: restaurants, isLoading } = useGetRestaurantsQuery();
-  if (!restaurants) return <h4>Carregando...</h4>;
+  if (!restaurants || isLoading)
+    return (
+      <>
+        <S.HomeContainer>
+          <div className="loader">
+            <BarLoader height={10} color="#E66767" />
+          </div>
+        </S.HomeContainer>
+      </>
+    );
 
   const restaurant = restaurants.find((restaurant) => restaurant.tipo === tipo);
 
@@ -28,7 +38,5 @@ export const FoodPage = () => {
         </S.HomeContainer>
       </>
     );
-  } else {
-    return <h4>Carregando...</h4>;
   }
 };

@@ -13,4 +13,9 @@ export const HomeContainer = styled.div`
     margin-top: 38px;
     margin-bottom: 58px;
   }
+
+  .loader {
+    display: flex;
+    justify-content: center;
+  }
 `;
